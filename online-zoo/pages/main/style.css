@@ -454,3 +454,139 @@ body {
 .btn__feedFriend:active {
     background: linear-gradient(50deg,#4B9200,#4B9200 100%);
 }
+
+/* testimonials
+================================ */
+
+.testimonials {
+    background-image: url(../../assets/images/leav_foto.png);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: bottom;
+}
+
+.testimonials__title {
+    font-size: 36px;
+    line-height: 46.8px;
+    text-align: center;
+    padding-top: 140px;
+    margin-bottom: 47px;
+}
+
+.testimonials__items {
+    display: flex;
+    justify-content: space-between;
+}
+
+.testimonials__item {
+    width: 268px;
+    max-height: 391px;
+    background: #F1F3F2;
+    border-radius: 20px;
+    border: 2px solid;
+    border-image-source: linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
+    linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);       
+}
+
+.about__user {
+    display: flex;
+    padding-top: 15px;
+    padding-left: 16px;
+}
+
+.user__name {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    color: #000;
+}
+
+.user__date {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 120%;
+    color: #BDBDBD;
+    padding-left: 10px;
+}
+
+.user__adress {
+    display: flex;
+}
+
+.between_dates {
+    padding:  0 6px;
+}
+
+.testimonials__text {
+    width: 237px;
+    padding-left: 16px;
+    padding-top: 11px;
+    margin-bottom: 19px;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 120%;
+    font-weight: 300;
+    color: #767474;
+}
+
+/* scroll
+================================ */
+.testimonials__scroll {
+    margin: 0 auto;
+    margin-top: 21px;
+    margin-bottom: 31px;
+    display: flex;
+    justify-content: center;
+}
+
+.scroll__line {
+    width: 599px;
+    height: 8px;
+    position: relative;
+    background: #F5F7F6;
+    border-radius: 5px;
+    border: 0.5px solid;
+    border-image-source: linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
+    linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);
+    border-image-slice: 33%;
+}
+
+.scroll {
+    width: 115.19px;
+    height: 6px;
+    position: absolute;
+    top: 1px;
+    /* left: 199px; */
+    cursor: pointer;
+    background: #FE9013;
+    border-radius: 5px;
+}
+
+/* testimonials button
+================================ */
+
+.testimonials__btn {
+    padding-bottom: 180px;
+}
+
+.btn__feedback {
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 16px 0;
+    border: 0;
+    background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+    border-radius: 5px;
+    transition: background .3s  ease;
+    width: 298px;
+    cursor: pointer;
+    line-height: 22.4px;
+}
+
+.btn__feedback:hover {
+    background:linear-gradient(50deg,#FE9013,#FE9013 100%);
+}
+
+.btn__feedback:active {
+    background: linear-gradient(50deg,#4B9200,#4B9200 100%);
+}
