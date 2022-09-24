@@ -66,12 +66,10 @@ body {
 
 .header__link:hover {
     color: #FE9013;
-    text-decoration: underline;
 }
 
 .header__link:active {
     color: #FE9013;
-    text-decoration: underline;
 }
 .header__logo {
     font-size: 19px;
@@ -479,13 +477,17 @@ body {
 }
 
 .testimonials__item {
+    border-radius: 20px;
+    background: linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
+linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);
+}
+
+.testimonials__item__inner {
     width: 268px;
     max-height: 391px;
     background: #F1F3F2;
     border-radius: 20px;
-    border: 2px solid;
-    border-image-source: linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
-    linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);       
+    margin: 2px;
 }
 
 .about__user {
@@ -521,7 +523,7 @@ body {
     width: 237px;
     padding-left: 16px;
     padding-top: 11px;
-    margin-bottom: 19px;
+    padding-bottom: 19px;
     font-weight: 300;
     font-size: 15px;
     line-height: 120%;
@@ -543,20 +545,26 @@ body {
     width: 599px;
     height: 8px;
     position: relative;
-    background: #F5F7F6;
-    border-radius: 5px;
-    border: 0.5px solid;
-    border-image-source: linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
+    background: linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
     linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);
-    border-image-slice: 33%;
+    border-radius: 5px;
+}
+
+.testimonials__scroll__inner {
+    position: absolute;
+    top: 1px;
+    background: #F5F7F6;
+    width: 598px;
+    height: 6px;
+    border-radius: 5px;
 }
 
 .scroll {
     width: 115.19px;
     height: 6px;
     position: absolute;
-    top: 1px;
-    /* left: 199px; */
+    top: 0;
+    left: 2px;
     cursor: pointer;
     background: #FE9013;
     border-radius: 5px;
@@ -589,4 +597,171 @@ body {
 
 .btn__feedback:active {
     background: linear-gradient(50deg,#4B9200,#4B9200 100%);
+}
+
+/* footer
+================================ */
+.footer {
+    background-color: #111115;
+}
+
+.footer__logo {
+    padding-top: 41px;
+    padding-bottom: 68px;
+}
+
+.footer__inner {
+    display: flex;
+}
+
+/* footer social
+================================ */
+
+.social {
+    padding-bottom: 50PX;
+}
+
+.social__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.social__item a {
+    text-decoration: none;
+    line-height: 140%;
+    color: #fff;
+    cursor: pointer;
+}
+
+.icon__background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    width: 26px;
+    height: 26px;
+    background: rgba(196, 196, 196, 0.5);
+    border-radius: 50%;
+}
+
+/* footer links
+================================ */
+
+.links {
+    display: flex;
+    width: 495px;
+    justify-content: space-around;
+    margin-top: 373px;
+}
+
+.footer__link {
+    color: #fff;
+    text-decoration: none;
+    transition: color .1s linear;
+}
+
+.footer__link:hover {
+    color: #FE9013;
+}
+
+.link__active {
+    color: #FE9013;
+    text-decoration: none;
+    transition: color .1s linear;
+}
+
+/* footer subscribe
+================================ */
+
+.subscribe__title {
+    font-size: 24px;
+    line-height: 120%;
+    color: #fff;
+    margin-bottom: 14px;
+    margin-top: 40px;
+}
+
+.subscribe__email {
+    display: flex;
+    justify-content: center;
+}
+
+.subscribe__input {
+    width: 228px;
+    padding: 10px 0;
+    padding-left: 10px;
+    margin-right: 10px;
+    background: transparent;
+    border: 0.7px solid;
+    border-color: #F9804B;
+    border-radius: 2px;
+    transition: border-color .3s  ease;
+    line-height: 140%;
+    color: #BDBDBD;
+    font-size: 16px;
+}
+
+.subscribe__input:active {
+    border-color: Green
+}
+
+.disigned-by {
+    margin-top: 206px;
+    margin-left: 139px;
+}
+
+.designer {
+    padding-top: 10px;
+    font-weight: 100;
+    line-height: 130%;
+    color: #fff;
+}
+
+/* footer button
+================================ */
+
+.footer__btn {
+    padding-bottom: 44px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn__donate {
+    width: 298px;
+    padding: 16px 0;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 22.4px;
+    border: 0;
+    background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+    border-radius: 5px;
+    transition: background .3s  ease;
+    cursor: pointer;
+}
+
+.btn__donate:hover {
+    background:linear-gradient(50deg,#FE9013,#FE9013 100%);
+}
+
+.btn__donate:active {
+    background: linear-gradient(50deg,#4B9200,#4B9200 100%);
+}
+
+.subscribe__btn {
+    width: 129px;
+    height: 42px;
+    background: #F1F3F2;
+    border: 1px solid #333B41;
+    border-radius: 5px;
+    transition: border-color .3s  ease;
+    cursor: pointer;
+    background: #F1F3F2;
+    color: #000;
+    font-size: 16px;
+}
+
+.subscribe__btn:active {
+    border-color: Green;
 }
