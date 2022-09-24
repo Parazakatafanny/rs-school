@@ -169,3 +169,45 @@ body {
 .button__online:active {
     background: linear-gradient(50deg,#4B9200,#4B9200 100%);
 }
+/* backstage
+================================ */
+
+.backstage {
+    height: 605px;
+    background-image: url(../../assets/img/flower_foto1.png);
+    background-repeat: no-repeat;
+    background-position-x: right;
+}
+
+.backstage__inner {
+    padding-top: 128px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.backstage__text {
+    width: 465px;
+}
+
+.backstage__title {
+    font-size: 48px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    line-height: 57.6px;
+}
+
+.title__text {
+    line-height: 20.8px;
+    margin-bottom: 54px;
+}
+
+.backstage__title2 {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28.8px;
+    margin-bottom: 34px;
+}
+
+.title__text2 {
+    line-height: 22.4px;
+}
