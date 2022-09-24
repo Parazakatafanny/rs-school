@@ -41,3 +41,131 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #333B41;
+}
+
+.container {
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+/* header
+================================ */
+
+.header__link {
+    color: #fff;
+    text-decoration: none;
+    transition: color .1s linear;
+}
+
+.header__link:hover {
+    color: #FE9013;
+    text-decoration: underline;
+}
+
+.header__link:active {
+    color: #FE9013;
+    text-decoration: underline;
+}
+.header__logo {
+    font-size: 19px;
+    font-weight: 400;
+    text-align: center;
+    border: 1px solid #fff;
+    padding: 5px;
+    transition: color, border .1s linear;
+}
+
+.header__logo:hover {
+    color: #FE9013;
+    border: 1px solid #FE9013;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000;
+    height: 80px;
+}
+
+.header__section {
+    display: flex;
+    align-items: center;
+}
+
+.header__item {
+    padding: 0 50px;
+}
+
+/* watch-online
+================================ */
+
+.header-watch {
+    height: 700px;
+    background-size: cover;
+    background-image: url(../../assets/img/Giant\ Panda.jpg);
+}
+
+.watch-online {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    }
+
+.title__watch {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    margin-bottom: 70px;
+}
+
+.title {
+    margin-top: 87px;
+    position: absolute;
+    top: 5px;
+    left: 73px;
+    color: #fff;
+    font-size: 106px;
+    font-weight: 700;
+    text-transform: uppercase;
+    width: min-content;
+    text-align: center;
+    line-height: 0.75;
+}
+
+.background__title {
+    margin-top: 17px;
+    width: 465px;
+    height: 465px;
+    border-radius: 50%;
+    background: linear-gradient(45deg,#F9804B,#FE9013 100%);
+}
+
+.button__online {
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px 0;
+    border: 0;
+    background: linear-gradient(50deg,#F9804B,#FE9013 100%);
+    transition: background .3s  ease;
+    width: 298px;
+    cursor: pointer;
+    border-radius: 25px;
+    margin-bottom: 100px;
+}
+
+.button__online:hover {
+    background:linear-gradient(50deg,#E47209,#E47209 100%);
+}
+
+.button__online:active {
+    background: linear-gradient(50deg,#4B9200,#4B9200 100%);
+}
