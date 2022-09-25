@@ -676,6 +676,9 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 }
 
 .social__item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
     line-height: 140%;
     color: #fff;
@@ -690,7 +693,13 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     width: 26px;
     height: 26px;
     background: rgba(196, 196, 196, 0.5);
+    transition: background .1s linear;
     border-radius: 50%;
+    cursor: pointer;
+}
+
+.icon__background:hover {
+    background: rgba(196, 196, 196, 0.795);
 }
 
 /* footer links
