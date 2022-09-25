@@ -68,37 +68,66 @@
                 <div class="amount__line">
                     <div class="line__inner">
                         <div class="line__items">
-                            <div class="line__item"></div>
-                            <div class="line__item"></div>
-                            <div class="line__item"></div>
-                            <div class="line__item"></div>
-                            <div class="line__item"></div>
-                            <div class="line__item"></div>
-                            <div class="line__item"></div>
-                            <div class="line__item"></div>
+                            <div class="line__item">
+                                <div class="layer layer1"></div>
+                                <div class="layer layer2"></div>
+                                <div class="price">$5000</div>
+                            </div>
+                            <div class="line__item">
+                                <div class="layer layer1"></div>
+                                <div class="layer layer2"></div>
+                                <div class="price">$2000</div>
+                            </div>
+                            <div class="line__item">
+                                <div class="layer layer1"></div>
+                                <div class="layer layer2"></div>
+                                <div class="price">$1000</div>
+                            </div>
+                            <div class="line__item">
+                                <div class="layer layer1"></div>
+                                <div class="layer layer2"></div>
+                                <div class="price">$500</div>
+                            </div>
+                            <div class="line__item">
+                                <div class="layer layer1"></div>
+                                <div class="layer layer2"></div>
+                                <div class="price">$250</div>
+                            </div>
+                            <div class="line__item">
+                                <div class="layer layer1"></div>
+                                <div class="layer layer2"></div>
+                                <div class="price">$100</div>
+                            </div>
+                            <div class="line__item">
+                                <div class="layer layer1"></div>
+                                <div class="layer layer2"></div>
+                                <div class="price">$50</div>
+                            </div>
+                            <div class="line__item">
+                                <div class="layer layer1"></div>
+                                <div class="layer layer2"></div>
+                                <div class="price">$25</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="line__money">
-                    <h2 class="money__item">$5000</h2>
-                    <h2 class="money__item">$2000</h2>
-                    <h2 class="money__item">$1000</h2>
-                    <h2 class="money__item">$500</h2>
-                    <h2 class="money__item">$250</h2>
-                    <h2 class="money__item">$100</h2>
-                    <h2 class="money__item">$50</h2>
-                    <h2 class="money__item">$25</h2>
-                </div>
-                
                 <form class="donate__pay" action="">
-                    <input class="amount__input" type="number" placeholder="Another amount">
-                    <div class="radio__btn">
-                        <input type="radio" id="Monthly">
-                        <label for="Monthly">Monthly</label>
-
-                        <input class="radio__once" type="radio" id="Once" value="checked">
-                        <label for="Once">Once</label>
+                    <div class="amount__input-box">
+                        <input class="amount__input" type="number" max="9999" autofocus placeholder="Another amount">
+                        <span class="dollar-sign">$</span>
+                    </div>
+                    <div class="radio__btns">
+                        <label class="radio__label Monthly" for="Monthly">
+                                <span class="text">Monthly</span>
+                                <input class="radio__btn" type="radio" name="sub_period" id="Monthly">
+                                <span class="checkmark"></span>
+                        </label>
+                        <label class="radio__label" for="Once">
+                            <span class="text">Once</span>
+                            <input class="radio__btn" type="radio" name="sub_period" checked id="Once">
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                     
                     <div class="donate__btn">
