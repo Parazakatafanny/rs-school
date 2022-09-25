@@ -1,5 +1,7 @@
 let emailInput = document.querySelector('.subscribe__input')
 let subscribeButton = document.querySelector('.subscribe__btn')
+let numberInput = document.querySelector('.amount__input')
+let dollarSign = document.querySelector('.dollar-sign')
 
 emailInput.addEventListener('input', () => {
     if (emailInput.value == '') {
@@ -15,3 +17,19 @@ emailInput.addEventListener('input', () => {
         subscribeButton.classList.add('valid')
     }
 });
+
+numberInput.addEventListener('input', () => {
+    if (numberInput.value == '') {
+        dollarSign.classList.remove('invalid__dollar')
+        dollarSign.classList.remove('valid__dollar')
+        return;
+    }
+
+    if (!numberInput.checkValidity()) {
+        dollarSign.classList.remove('valid__dollar')
+        dollarSign.classList.add('invalid__dollar')
+    } else {
+        dollarSign.classList.remove('invalid__dollar')
+        dollarSign.classList.add('valid__dollar')
+    }
+})
