@@ -13,9 +13,12 @@
 <body>
     <header class="header">
         <div class="header__section">
-            <div class="header__item"><a class="header__link" href="#">
-                <h1 class="header__logo">PetStory <br> Online</h1>
-            </a>
+            <div class="header__item">
+                <a class="header__link" href="../main/index.html">
+                    <h1 class="header__logo">PetStory <br> Online
+                        <img class="bamboo__logo" src="../../assets/icons/bamboo.png" alt="bamboo">
+                    </h1>
+                </a>
             </div>
             <div class="header__item"><a class="link__active" href="#">About</a></div>
             <div class="header__item"><a class="header__link" href="#">Map</a></div>
@@ -77,7 +80,9 @@
         <div class="container">
             <div class="pets__inner">
                 <div class="pets__card">
-                    <img src="../../assets/images/pets1.jpg" alt="giant Pandas">
+                    <div class="pet__img">
+                        <img class="pet__photo" src="../../assets/images/pets1.jpg" alt="giant Pandas">
+                    </div>
                     <div class="about__pets">
                         <div class="about__text">
                             <h3 class="title__about">giant Pandas</h3>
@@ -90,7 +95,9 @@
                 </div>
 
                 <div class="pets__card">
-                    <img src="../../assets/images/pets2.jpg" alt="giant Pandas">
+                    <div class="pet__img">
+                        <img class="pet__photo" src="../../assets/images/pets2.jpg" alt="giant Pandas">
+                    </div>
                     <div class="about__pets">
                         <div class="about__text">
                             <h3 class="title__about">Eagles</h3>
@@ -103,7 +110,9 @@
                 </div>
 
                 <div class="pets__card">
-                    <img src="../../assets/images/pets3.jpg" alt="giant Pandas">
+                    <div class="pet__img">
+                        <img class="pet__photo" src="../../assets/images/pets3.jpg" alt="giant Pandas">
+                    </div>
                     <div class="about__pets">
                         <div class="about__text">
                             <h3 class="title__about">Gorillas</h3>
@@ -116,7 +125,9 @@
                 </div>
 
                 <div class="pets__card">
-                    <img src="../../assets/images/pets4.jpg" alt="giant Pandas">
+                    <div class="pet__img">
+                        <img class="pet__photo" src="../../assets/images/pets4.jpg" alt="giant Pandas">
+                    </div>
                     <div class="about__pets">
                         <div class="about__text">
                             <h3 class="title__about">Two-toed Sloth</h3>
@@ -129,7 +140,9 @@
                 </div>
 
                 <div class="pets__card">
-                    <img src="../../assets/images/pets5.jpg" alt="giant Pandas">
+                    <div class="pet__img">
+                        <img class="pet__photo" src="../../assets/images/pets5.jpg" alt="giant Pandas">
+                    </div>
                     <div class="about__pets">
                         <div class="about__text">
                             <h3 class="title__about">cheetahs</h3>
@@ -142,7 +155,9 @@
                 </div>
 
                 <div class="pets__card">
-                    <img src="../../assets/images/pets6.jpg" alt="giant Pandas">
+                    <div class="pet__img">
+                        <img class="pet__photo" src="../../assets/images/pets6.jpg" alt="giant Pandas">
+                    </div>
                     <div class="about__pets">
                         <div class="about__text">
                             <h3 class="title__about">Penguins</h3>
@@ -400,17 +415,18 @@
 
                 <div class="subscribe">
                     <h1 class="subscribe__title">Subscribe to our news</h1>
-                    <div class="subscribe__email">
+                    <form class="subscribe__email" action="">
                         <input class="subscribe__input" type="email" placeholder="Enter your email">
                         <button class="subscribe__btn">Submit</button>
-                    </div>
+                    </form>
+
                     <div class="disigned-by">
                         <h4 class="designer">Designed by Alisa Samborskaya</h4>
                         <h4  class="designer">©RSSchool & ©Yem Digital 2021</h4>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div><!--./footer__inner-->
+        </div><!--./container-->
     </footer>
 </body>
 </html>

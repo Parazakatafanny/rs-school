@@ -72,17 +72,20 @@ body {
     color: #FE9013;
 }
 .header__logo {
+    position: relative;
     font-size: 19px;
     font-weight: 400;
     text-align: center;
     border: 1px solid #fff;
     padding: 5px;
     transition: color, border .1s linear;
+    cursor: pointer;
 }
 
-.header__logo:hover {
-    color: #FE9013;
-    border: 1px solid #FE9013;
+.bamboo__logo {
+    position: absolute;
+    bottom: 7px;
+    left: 13px;
 }
 
 .header {
@@ -236,13 +239,53 @@ body {
     margin-bottom: 20px;
 }
 
+.pet__img {
+    width: 366px;
+    height: auto;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.pet__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .5s linear;
+}
+
+.pet__photo:hover {
+    transform: scale(1.2);
+}
+
+
 .about__pets {
+    position: relative;
+    z-index: 100;
+    height: 60px;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
+    background: #fff;
+}
+
+.about__pets:hover {
+    background: rgba(255, 166, 0, 0.055);
+}
+
+.about__pets:hover .about__img {
+    display: block;
+    transform: translate(0, 45px);
+}
+
+.about__pets:hover .about__text {
+    transform: translate(0, 45px);
 }
 
 .about__text {
+    position: absolute;
+    bottom: 45px;
     padding: 8px 0 14px 16px;
+    transition: transform 1s;
 }
 
 .title__about {
@@ -259,7 +302,11 @@ body {
 }
 
 .about__img {
+    position: absolute;
+    bottom: 45px;
+    left: 307px;
     padding: 10px 13px 13px 0;
+    transition: transform 1s;
 }
 
 /* pets-button
@@ -693,17 +740,17 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     padding-left: 10px;
     margin-right: 10px;
     background: transparent;
-    border: 0.7px solid;
-    border-color: #F9804B;
+    border: 0.7px solid #F9804B;
     border-radius: 2px;
-    transition: border-color .3s  ease;
+    transition: border .3s  ease;
     line-height: 140%;
     color: #BDBDBD;
     font-size: 16px;
 }
 
-.subscribe__input:active {
-    border-color: Green
+.subscribe__input:focus {
+    border:  0.7px solid Green;
+    border-radius: 2px; 
 }
 
 .disigned-by {
@@ -715,7 +762,7 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     padding-top: 10px;
     font-weight: 100;
     line-height: 130%;
-    color: #fff;
+    color: rgba(255, 255, 255, 1);
 }
 
 /* footer button
