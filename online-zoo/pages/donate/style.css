@@ -172,6 +172,7 @@ body {
 .panda__diet {
     display: flex;
     /* justify-content: space-around; */
+    margin-bottom: 40px;
     align-items: center;
 }
 .panda__days {
@@ -239,29 +240,71 @@ body {
     height: 10px;
     background: #FFEE2E;
     border-radius: 50%;
+    position: relative;
+    cursor: pointer;
 }
 
-.line__money {
-    padding-right: 30px;
-    padding-bottom: 50PX;
-    display: flex;
-    justify-content: space-between;
+.line__item:hover .layer {
+    opacity: 1;
 }
 
-.money__item {
+.line__item:hover .price {
+    color: #FE9013;
+}
+
+.line__item .layer {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px rgba(254, 144, 19, 1) solid;
+    transition: opacity .2s ease;
+}
+
+.line__item .layer1 {
+    width: 23px;
+    height: 23px;
+}
+
+.line__item .layer2 {
+    width: 40px;
+    height: 40px;
+}
+
+.price {
+    position: absolute;
+    transition: color .2s ease;
+    top: 31px;
     font-size: 26px;
     line-height: 140%;
     font-weight: 500;
     text-transform: uppercase;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 
 /* form donate
 ================================ */
+
+.amount__input-box input::-webkit-outer-spin-button,
+.amount__input-box input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.amount__input-box input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .donate__pay {
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-top: 100px;
 }
 
 .donate__btn {
@@ -270,21 +313,44 @@ body {
     justify-content: center;
 }
 
+.amount__input-box {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.amount__input-box span {
+    position: absolute;
+    top: 50%;
+    transform: translate(0px, -50%);
+    font-size: 24px;
+    right: 10px;
+    font-weight: 600;
+    user-select: none;
+}
+
 .amount__input {
     outline: none;
     width: 228px;
     padding: 16px 0;
     padding-left: 9px;
-    margin-bottom: 25px;
     background: transparent;
-    border: 0.7px solid Green;
+    border: 1px solid Green;
     border-radius: 2px;
     transition: border .3s  ease;
     line-height: 140%;
     color: #929699;
     font-size: 16px;
-    background: url(icon.png) no-repeat center left;
-    padding-left:30px;
+}
+
+.dollar-sign {
+    color: #929699;
+}
+.invalid__dollar {
+    color: #D31414;
+}
+
+.valid__dollar {
+    color: green;
 }
 
 .amount__input:placeholder-shown {
@@ -293,12 +359,61 @@ body {
 
 .amount__input:invalid {
     color: #D31414;
-    border: 0.7px solid #D31414;
+    border: 1px solid #D31414;
 }
 
-.radio__once {
-    padding: 0 50px;
+.Monthly {
+    padding-right: 50px;
 }
+
+.radio__label {
+    padding-left: 25px;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.radio__btns {
+    display: flex;
+}
+
+.radio__btns .text {
+    position: relative;
+    top: 2px;
+}
+
+/* Hide the browser's default radio button */
+.radio__label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.radio__label .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    border: 1px solid orange;
+}
+  
+/* When the radio button is checked, add a blue background */
+.radio__label input:checked ~ .checkmark {
+    background-color: green;
+    border: 1px solid green;
+}
+
+.radio__btn {
+    cursor: pointer;
+}
+
 
 /* button donate
 ================================ */
