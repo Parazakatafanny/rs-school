@@ -1,0 +1,636 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #333B41;
+}
+
+.container {
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+/* header
+================================ */
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000;
+    height: 80px;
+}
+
+.header__link {
+    color: #fff;
+    text-decoration: none;
+    transition: color .1s linear;
+}
+
+.header__link:hover {
+    color: #FE9013;
+}
+
+.header__link:active {
+    color: #FE9013;
+}
+.header__logo {
+    position: relative;
+    font-size: 19px;
+    font-weight: 400;
+    text-align: center;
+    border: 1px solid #fff;
+    padding: 5px;
+    transition: color, border .1s linear;
+    cursor: pointer;
+}
+
+.bamboo__logo {
+    position: absolute;
+    bottom: 7px;
+    left: 13px;
+}
+
+.header__section {
+    display: flex;
+    align-items: center;
+}
+
+.header__item {
+    padding: 0 50px;
+}
+
+.link__active {
+    color: #FE9013;
+    text-decoration: none;
+    transition: color .1s linear;
+}
+
+.header__panda {
+    width: 100%;
+    height: 390px;
+    background-size: cover;
+    background-image: url(../../assets/images/panda_bg.jpg);
+}
+
+/* donation info
+================================ */
+
+.donation__info {
+    background: linear-gradient(315.75deg, rgba(254, 210, 144, 0.7) 30.06%, #FEBDAB 100.95%, rgba(254, 210, 144, 0.7) 106.36%), linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%), linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);
+    padding-bottom: 180px;
+}
+
+.info__title {
+    padding-top: 40px;
+    padding-bottom: 10px;
+    font-size: 36px;
+    line-height: 130%;
+    color: #FFFFFF;
+}
+
+.info__text {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    color: #FFFFFF;
+    padding-bottom: 40px;
+}
+
+.donation__title {
+    padding-bottom: 60px;
+    font-size: 36px;
+    line-height: 130%;
+    color: #FE9013;
+}
+
+.feed__friend {
+    background: rgba(255, 255, 255, 0.52);
+    border-radius: 20px;
+    padding: 40px 90px;
+}
+
+.feed__title {
+    font-size: 48px;
+    line-height: 120%;
+    text-align: center;
+    color: #FE9013;
+}
+
+.feed__text {
+    padding-top: 20px;
+    padding-bottom: 60px;
+    font-size: 24px;
+    line-height: 120%;
+}
+
+.panda__diet {
+    display: flex;
+    /* justify-content: space-around; */
+    margin-bottom: 40px;
+    align-items: center;
+}
+.panda__days {
+    padding-left: 215px;
+    padding-right: 10px;
+}
+
+.days {
+    font-weight: 500;
+    font-size: 72px;
+    line-height: 80%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+.days__text {
+    padding-top: 11px;
+    line-height: 140%;
+    text-align: center;
+}
+
+.x {
+    padding-right: 64px;
+}
+
+/* amount line
+================================ */
+
+.amount {
+    color: #000;
+    padding-bottom: 10px;
+}
+
+.amount__line {
+    margin-bottom: 10px;
+    position: relative;
+    height: 27px;
+    background: #404950;
+    border-radius: 2px;
+}
+
+.line__inner {
+    position: absolute;
+    width: 915px;
+    height: 2px;
+    top: 12px;
+    left: 30px;
+    background: #72828E;
+}
+
+.line__items {
+    position: absolute;
+    width: 915px;
+    top: -4px;
+    /* padding-left: 30px;
+    padding-top: 8px; */
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.line__item {
+    width: 10px;
+    height: 10px;
+    background: #FFEE2E;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+}
+
+.line__item:hover .layer {
+    opacity: 1;
+}
+
+.line__item:hover .price {
+    color: #FE9013;
+}
+
+.line__item .layer {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px rgba(254, 144, 19, 1) solid;
+    transition: opacity .2s ease;
+}
+
+.line__item .layer1 {
+    width: 23px;
+    height: 23px;
+}
+
+.line__item .layer2 {
+    width: 40px;
+    height: 40px;
+}
+
+.price {
+    position: absolute;
+    transition: color .2s ease;
+    top: 31px;
+    font-size: 26px;
+    line-height: 140%;
+    font-weight: 500;
+    text-transform: uppercase;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+
+/* form donate
+================================ */
+
+.amount__input-box input::-webkit-outer-spin-button,
+.amount__input-box input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.amount__input-box input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.donate__pay {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.donate__btn {
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.amount__input-box {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.amount__input-box span {
+    position: absolute;
+    top: 50%;
+    transform: translate(0px, -50%);
+    font-size: 24px;
+    right: 10px;
+    font-weight: 600;
+    user-select: none;
+}
+
+.amount__input {
+    outline: none;
+    width: 228px;
+    padding: 16px 0;
+    padding-left: 9px;
+    background: transparent;
+    border: 1px solid Green;
+    border-radius: 2px;
+    transition: border .3s  ease;
+    line-height: 140%;
+    color: #929699;
+    font-size: 16px;
+}
+
+.dollar-sign {
+    color: #929699;
+}
+.invalid__dollar {
+    color: #D31414;
+}
+
+.valid__dollar {
+    color: green;
+}
+
+.amount__input:placeholder-shown {
+    border: 1px solid #929699;
+}
+
+.amount__input:invalid {
+    color: #D31414;
+    border: 1px solid #D31414;
+}
+
+.Monthly {
+    padding-right: 50px;
+}
+
+.radio__label {
+    padding-left: 25px;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.radio__btns {
+    display: flex;
+}
+
+.radio__btns .text {
+    position: relative;
+    top: 2px;
+}
+
+/* Hide the browser's default radio button */
+.radio__label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.radio__label .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    border: 1px solid orange;
+}
+  
+/* When the radio button is checked, add a blue background */
+.radio__label input:checked ~ .checkmark {
+    background-color: green;
+    border: 1px solid green;
+}
+
+.radio__btn {
+    cursor: pointer;
+}
+
+
+/* button donate
+================================ */
+
+.btn__feed {
+    width: 298px;
+    padding: 16px 0;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    border: 0;
+    background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+    border-radius: 25px;
+    transition: background .3s  ease;
+    cursor: pointer;
+}
+
+.btn__feed:hover {
+    background:linear-gradient(50deg,#FE9013,#FE9013 100%);
+}
+
+.btn__feed:active {
+    background: linear-gradient(50deg,#4B9200,#4B9200 100%);
+}
+
+.amount__text {
+    text-align: center;
+}
+
+/* footer
+================================ */
+.footer {
+    background-color: #111115;
+}
+
+.footer__logo {
+    padding-top: 41px;
+    padding-bottom: 68px;
+}
+
+.footer__inner {
+    display: flex;
+}
+
+/* footer social
+================================ */
+
+.social {
+    padding-bottom: 50PX;
+}
+
+.social__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.social__item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    line-height: 140%;
+    color: #fff;
+    cursor: pointer;
+}
+
+.icon__background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    width: 26px;
+    height: 26px;
+    background: rgba(196, 196, 196, 0.5);
+    transition: background .1s linear;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.icon__background:hover {
+    background: rgba(196, 196, 196, 0.795);
+}
+
+/* footer links
+================================ */
+
+.links {
+    display: flex;
+    width: 495px;
+    justify-content: space-around;
+    margin-top: 373px;
+}
+
+.footer__link {
+    color: #fff;
+    text-decoration: none;
+    transition: color .1s linear;
+}
+
+.footer__link:hover {
+    color: #FE9013;
+}
+
+.link__active {
+    color: #FE9013;
+    text-decoration: none;
+    transition: color .1s linear;
+}
+
+/* footer subscribe
+================================ */
+
+.subscribe__title {
+    font-size: 24px;
+    line-height: 120%;
+    color: #fff;
+    margin-bottom: 14px;
+    margin-top: 40px;
+}
+
+.disigned-by {
+    margin-top: 206px;
+    margin-left: 139px;
+}
+
+.designer {
+    padding-top: 10px;
+    font-weight: 100;
+    line-height: 130%;
+    color: rgba(255, 255, 255, 1);
+}
+
+/* footer input
+================================ */
+
+.subscribe__email {
+    display: flex;
+    justify-content: center;
+}
+
+.subscribe__input {
+    outline: none;
+    width: 228px;
+    padding: 10px 0;
+    padding-left: 10px;
+    margin-right: 10px;
+    background: transparent;
+    border: 0.7px solid Green;
+    border-radius: 2px;
+    transition: border .3s  ease;
+    line-height: 140%;
+    color: #BDBDBD;
+    font-size: 16px;
+}
+
+.subscribe__input:placeholder-shown {
+    border: 0.7px solid #F9804B;
+}
+
+.subscribe__input:invalid {
+    color: #D31414;
+    border: 0.7px solid #D31414;
+}
+
+/* footer button
+================================ */
+
+.footer__btn {
+    padding-bottom: 44px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn__donate {
+    width: 298px;
+    padding: 16px 0;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 22.4px;
+    border: 0;
+    background: linear-gradient(113.96deg, #F9804B 1.49%, #FE9013 101.44%);
+    border-radius: 5px;
+    transition: background .3s  ease;
+    cursor: pointer;
+}
+
+.btn__donate:hover {
+    background:linear-gradient(50deg,#FE9013,#FE9013 100%);
+}
+
+.btn__donate:active {
+    background: linear-gradient(50deg,#4B9200,#4B9200 100%);
+}
+
+.subscribe__btn {
+    width: 129px;
+    height: 42px;
+    background: #F1F3F2;
+    border: 1px solid #333B41;
+    border-radius: 5px;
+    transition: border .3s  ease;
+    cursor: pointer;
+    background: #F1F3F2;
+    color: #000;
+    font-size: 16px;
+}
+
+.valid {
+    background: #dcdfdd;
+    border: 1px solid Green;
+    color: #4B9200;
+}
+
+.invalid {
+    background: #dcdfdd;
+    border: 1px solid #D31414;
+    color: #D31414;
+}
