@@ -175,7 +175,7 @@ body {
 
 .backstage {
     height: 605px;
-    background-image: url(../../assets/img/flower_foto1.png);
+    background-image: url(../../assets/images/flower_foto1.png);
     background-repeat: no-repeat;
     background-position-x: right;
 }
@@ -218,8 +218,8 @@ body {
 
 .pets {
     padding-top: 106px;
-    background-image: url(../../assets/img/strelitzia\ 1.png) ,
-                      url(../../assets/img/palm_foto.png);
+    background-image: url(../../assets/images/strelitzia\ 1.png) ,
+                      url(../../assets/images/palm_foto.png);
     background-repeat: no-repeat;
     background-position-x: right, left;
     background-position-y: bottom;
@@ -359,6 +359,10 @@ body {
 
 .slide__left:hover, .slide__right:hover {
     background: linear-gradient(45deg,#FE9013,#FE9013 100%);
+}
+
+.slide__left:active, .slide__right:active {
+    background: green;
 }
 
 .slide__vector {
