@@ -89,20 +89,31 @@ body {
 }
 
 .header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
     background-color: #000;
     height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header__section {
+    width: 690px;
     display: flex;
     align-items: center;
 }
 
 .header__item {
-    padding: 0 50px;
+    padding-right: 58px;
+}
+
+.header__last__item {
+    padding-right: 0;
 }
 
 /* watch-online
@@ -114,24 +125,19 @@ body {
     background-image: url(../../assets/images/Giant\ Panda.jpg);
 }
 
-.watch-online {
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
-    }
-
 .title__watch {
     display: flex;
     position: relative;
     flex-direction: row;
-    margin-bottom: 70px;
+    padding-left: 595px;
+    margin-bottom: 65px;
 }
 
 .title {
     margin-top: 87px;
     position: absolute;
-    top: 5px;
-    left: 73px;
+    top: 0px;
+    left: 675px;
     color: #fff;
     font-size: 106px;
     font-weight: 700;
@@ -142,18 +148,27 @@ body {
 }
 
 .background__title {
-    margin-top: 17px;
+    margin-top: 15px;
     width: 465px;
     height: 465px;
     border-radius: 50%;
     background: linear-gradient(45deg,#F9804B,#FE9013 100%);
 }
 
+.button__watch {
+    padding-left: 770px;
+}
+
 .button__online {
+    height: 54px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
     color: #fff;
+    font-size: 16px;
     text-transform: uppercase;
     text-align: center;
-    padding: 20px 0;
+    font-weight: 500;
+    padding: 16px 0;
     border: 0;
     background: linear-gradient(50deg,#F9804B,#FE9013 100%);
     transition: background .3s  ease;
@@ -191,6 +206,7 @@ body {
 }
 
 .backstage__title {
+    padding-left: 5px;
     font-size: 48px;
     font-weight: 400;
     margin-bottom: 20px;
@@ -198,11 +214,13 @@ body {
 }
 
 .title__text {
+    padding-left: 5px;
     line-height: 20.8px;
     margin-bottom: 54px;
 }
 
 .backstage__title2 {
+    padding-left: 5px;
     font-size: 24px;
     font-weight: 400;
     line-height: 28.8px;
@@ -210,6 +228,7 @@ body {
 }
 
 .title__text2 {
+    padding-left: 5px;
     line-height: 22.4px;
 }
 
@@ -233,60 +252,76 @@ body {
 }
 
 .pets__card {
-    border: 1px solid transparent;
-    border-image: linear-gradient(90deg,#F9804B,#FE9013 100%);
-    border-image-slice: 1;
+    border: 1px solid #F9804B;
+    border-radius: 5px;
     margin-bottom: 20px;
 }
 
+.pets__card:hover .pet__photo {
+    opacity: .6;
+    transform: scale(1.2);
+}
+
+.pets__card:hover .about__pets__hidden {
+    opacity: 1;
+}
+
 .pet__img {
+    border-radius: 5px;
+    position: relative;
     width: 366px;
-    height: auto;
+    height: 366px;
     overflow: hidden;
     cursor: pointer;
+}
+.pet__img2 {
+    border-radius: 5px;
+    width: 366px;
+    height: 366px;
+    cursor: pointer;
+    background: #000;
+    position: relative;
 }
 
 .pet__photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: .5s linear;
+    transition: all .5s linear;
 }
-
-.pet__photo:hover {
-    transform: scale(1.2);
-}
-
 
 .about__pets {
     position: relative;
     overflow: hidden;
-    z-index: 100;
     height: 60px;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
     background: #fff;
+    border-radius: 5px;
 }
 
-.about__pets:hover {
-    background: rgba(255, 166, 0, 0.055);
-}
-
-.about__pets:hover .about__img {
-    display: block;
-    transform: translate(0, 45px);
-}
-
-.about__pets:hover .about__text {
-    transform: translate(0, 45px);
+.about__pets__hidden {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    border-radius: 5px;
+    opacity: 0;
+    transition: all .2s linear;
 }
 
 .about__text {
-    position: absolute;
-    bottom: 45px;
     padding: 8px 0 14px 16px;
     transition: transform 1s;
+}
+
+.about__text__hidden {
+    text-align: center;
 }
 
 .title__about {
@@ -296,18 +331,29 @@ body {
     color: #000;
 }
 
+.title__about__hidden {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 22.4px;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+    color: #fff;
+}
+
 .text__about {
     font-size: 15px;
     line-height: 18px;
     color: #000;
 }
 
+.text__about__hidden {
+    font-size: 20px;
+    line-height: 18px;
+    color: #fff;
+}
+
 .about__img {
-    position: absolute;
-    bottom: 45px;
-    left: 307px;
     padding: 10px 13px 13px 0;
-    transition: transform 1s;
 }
 
 /* pets-button
@@ -324,6 +370,10 @@ body {
     color: #fff;
     text-transform: uppercase;
     text-align: center;
+    height: 54px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
     padding: 16px 0;
     border: 0;
     background: linear-gradient(50deg,#F9804B,#FE9013 100%);
@@ -400,7 +450,8 @@ body {
 }
 
 .feed__inner {
-    padding: 41px 99px 0 99px;
+    padding-top: 41px;
+    padding-left: 99px;
     background: rgba(253, 253, 255, 0.52);
     border-radius: 20px;
 }
@@ -408,7 +459,7 @@ body {
 .feed__title {
     font-size: 48px;
     color: #FE9013;
-    line-height: 57.6px;
+    line-height: 120%;
     text-align: center;
     font-weight: 400;
     margin-bottom: 30px;
@@ -416,7 +467,7 @@ body {
 
 .title__sub {
     font-size: 24px;
-    line-height: 28.8px;
+    line-height: 130%;
     margin-bottom: 40px;
 }
 
@@ -427,9 +478,10 @@ body {
 }
 
 .feed__text2 {
-    line-height: 20.8px;
+    font-size: 16px;
+    line-height: 130%;
     width: 863px;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
 .text__link {
@@ -448,8 +500,9 @@ body {
 
 .how-it-works {
     display: flex;
-    justify-content: space-around;
-    padding: 0 100px;
+    justify-content: space-between;
+    padding-right: 200px;
+    padding-left: 100px;
 }
 
 .works__vector {
@@ -484,6 +537,9 @@ body {
 }
 
 .btn__feedFriend {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
     color: #fff;
     text-transform: uppercase;
     text-align: center;
@@ -492,6 +548,7 @@ body {
     background: linear-gradient(50deg,#F9804B,#FE9013 100%);
     transition: background .3s  ease;
     width: 298px;
+    height: 54px;
     cursor: pointer;
     border-radius: 25px;
     line-height: 22.4px;
@@ -520,7 +577,7 @@ body {
     line-height: 46.8px;
     text-align: center;
     padding-top: 140px;
-    margin-bottom: 47px;
+    margin-bottom: 45px;
 }
 
 .testimonials__items {
@@ -587,8 +644,8 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 ================================ */
 .testimonials__scroll {
     margin: 0 auto;
-    margin-top: 21px;
-    margin-bottom: 31px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
 }
@@ -620,6 +677,11 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     cursor: pointer;
     background: #FE9013;
     border-radius: 5px;
+    transition: background .1s linear;
+}
+
+.scroll:hover {
+    background: #d87b11;
 }
 
 /* testimonials button
@@ -630,6 +692,10 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 }
 
 .btn__feedback {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    height: 54px;
     color: #fff;
     text-transform: uppercase;
     text-align: center;
@@ -687,6 +753,22 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     line-height: 140%;
     color: #fff;
     cursor: pointer;
+    transition: color .1s linear;
+}
+
+.social__item:hover a {
+    color: rgba(196, 196, 196, 0.795);
+}
+
+.social__item:hover a .icon__background {
+    background: rgba(196, 196, 196, 0.795);
+}
+
+.social__item:active a {
+    color: green;
+}
+.social__item:active a .icon__background {
+    background: green;
 }
 
 .icon__background {
@@ -700,10 +782,12 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     transition: background .1s linear;
     border-radius: 50%;
     cursor: pointer;
+    transition: background .1s linear;
 }
 
-.icon__background:hover {
-    background: rgba(196, 196, 196, 0.795);
+.padding__beetween {
+    width: 100px;
+    height: auto;
 }
 
 /* footer links
@@ -711,8 +795,8 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 
 .links {
     display: flex;
-    width: 495px;
-    justify-content: space-around;
+    width: 360px;
+    justify-content: space-between;
     margin-top: 373px;
 }
 
@@ -732,6 +816,11 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     transition: color .1s linear;
 }
 
+.padding__beetween2 {
+    width: 20px;
+    height: auto;
+}
+
 /* footer subscribe
 ================================ */
 
@@ -744,15 +833,26 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 }
 
 .disigned-by {
-    margin-top: 206px;
+    margin-top: 210px;
     margin-left: 139px;
+    cursor: pointer;
+}
+
+.disigned-by:hover  .designer{
+    color: green;
 }
 
 .designer {
-    padding-top: 10px;
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 15px;
     font-weight: 100;
     line-height: 130%;
-    color: rgba(255, 255, 255, 1);
+    color: rgba(255, 255, 255, 0.651);
+}
+
+.padding__beetween2 {
+    width: 32px;
+    height: auto;
 }
 
 /* footer input
@@ -760,12 +860,11 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 
 .subscribe__email {
     display: flex;
-    justify-content: center;
 }
 
 .subscribe__input {
     outline: none;
-    width: 228px;
+    width: 218px;
     padding: 10px 0;
     padding-left: 10px;
     margin-right: 10px;
