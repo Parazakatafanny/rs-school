@@ -840,6 +840,7 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 
 .disigned-by:hover  .designer{
     color: green;
+    text-decoration: underline;
 }
 
 .designer {

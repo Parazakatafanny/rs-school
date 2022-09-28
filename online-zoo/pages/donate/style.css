@@ -574,6 +574,7 @@ body {
 
 .disigned-by:hover  .designer{
     color: green;
+    text-decoration: underline;
 }
 
 .designer {
