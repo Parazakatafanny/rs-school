@@ -1818,7 +1818,7 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     .title {
         left: 178px;
         font-size: 28px;
-        top: 26px;
+        top: -7px;
     }
 
     .title__watch {
