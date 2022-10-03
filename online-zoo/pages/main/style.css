@@ -1337,13 +1337,13 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     }
 
     .title__watch {
-        padding-left: 310px;
+        padding-left: 315px;
         margin-bottom: 40px;
         top: 45px;
     }
 
     .title {
-        margin-top: 5px;
+        margin-top: 35px;
         left: 360px;
         font-size: 54.2894px;
         line-height: 75%;
@@ -1352,7 +1352,7 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     .background__title {
         width: 237.6px;
         height: 237.6px;
-        margin-top: -35px;
+        margin-top: -2px;
     }
 
     .button__watch {
@@ -1360,7 +1360,7 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     }
 
     .header-watch {
-        height: 339px;
+        height: 373px;
     }
 
     .header__burger {
@@ -1742,7 +1742,7 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     }
 
     .social {
-        margin-left: 80%;
+        margin-left: 85%;
         padding-left: 0;
         grid-column-start: 5;
         grid-column-end: 6;
