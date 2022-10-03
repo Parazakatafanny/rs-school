@@ -14,30 +14,41 @@
     <header class="header">
         <div class="container">
             <div class="header__inner">
-                <div class="header__section">
-                    <div class="header__item">
-                        <a class="header__link" href="../main/index.html">
-                            <h1 class="header__logo">PetStory <br> Online
-                                <img class="bamboo__logo" src="../../assets/icons/bamboo.png" alt="bamboo">
-                            </h1>
+                
+                <div class="header__logotype">
+                    <a class="header__link" href="../main/index.html">
+                        <h1 class="header__logo">PetStory <br> Online
+                            <img class="bamboo__logo" src="../../assets/icons/bamboo.png" alt="bamboo">
+                        </h1>
+                    </a>
+                </div>
+
+                <div class="nav-wrapper">
+                    <nav class="header__menu">
+                        <ul class="header__section">
+                        <li class="header__item"><a class="header__link" href="../main/index.html">About</a></li>
+                        <li class="header__item"><a class="header__link" href="#">Map</a></li>
+                        <li class="header__item"><a class="header__link" href="#">Zoos</a></li>
+                        <li class="header__item"><a class="link__active" href="../donate/index.html">Donate</a></li>
+                        <li class="header__item"><a class="header__link" href="#">Contact us</a></li>
+                        </ul>
+                    </nav>
+                    <div class="header__designer">
+                        <a class="header__link" href="https://www.figma.com/file/jfEFwkXVj1WRq7sUHDr8os/PetStory-online">
+                            Designed by ©
                         </a>
                     </div>
-                    <div class="header__item"><a class="header__link" href="../main/index.html">About</a></div>
-                    <div class="header__item"><a class="header__link" href="#">Map</a></div>
-                    <div class="header__item"><a class="header__link" href="#">Zoos</a></div>
-                    <div class="header__item"><a class="link__active" href="../donate/index.html">Donate</a></div>
-                    <div class="header__item"><a class="header__link" href="#">Contact us</a></div>
                 </div>
-                <div class="header__last__item">
-                    <a class="header__link" href="https://www.figma.com/file/jfEFwkXVj1WRq7sUHDr8os/PetStory-online">
-                        Designed by ©
-                    </a>
+                <div class="header__burger">
+                    <span></span>
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="header__panda"></div>
+    <div class="header__panda">
+        
+    </div>
 
     <div class="donation__info">
         <div class="container">
@@ -65,10 +76,10 @@
                         <p class="days__text">Panda diet for the day.</p>
                     </div>
                     <div class="x">
-                        <img src="../../assets/icons/x_icon.png" alt="x icon">
+                        <img class="x__icon" src="../../assets/icons/x_icon.png" alt="x icon">
                     </div>
                     <div class="panda__icon">
-                        <img src="../../assets/icons/panda_widget1.png" alt="panda icon">
+                        <img class="panda" src="../../assets/icons/panda_widget1.png" alt="panda icon">
                     </div>
                 </div>
 
@@ -76,22 +87,22 @@
                 <div class="amount__line">
                     <div class="line__inner">
                         <div class="line__items">
-                            <div class="line__item">
+                            <div class="line__item disable">
                                 <div class="layer layer1"></div>
                                 <div class="layer layer2"></div>
                                 <div class="price">$5000</div>
                             </div>
-                            <div class="line__item">
+                            <div class="line__item disable">
                                 <div class="layer layer1"></div>
                                 <div class="layer layer2"></div>
                                 <div class="price">$2000</div>
                             </div>
-                            <div class="line__item">
+                            <div class="line__item disable">
                                 <div class="layer layer1"></div>
                                 <div class="layer layer2"></div>
                                 <div class="price">$1000</div>
                             </div>
-                            <div class="line__item">
+                            <div class="line__item disable">
                                 <div class="layer layer1"></div>
                                 <div class="layer layer2"></div>
                                 <div class="price">$500</div>
@@ -150,15 +161,18 @@
     <footer class="footer">
         <div class="container">
             <div class="footer__inner">
+                <div class="footer__logo">
+                    <a href="../main/index.html"><img src="../../assets/icons/logo_footer.png" alt="logo footer"></a>
+                </div>
+                <div class="footer__logo2">
+                    <a href="../main/index.html"><img src="../../assets/icons/logo footer2.png" alt="logo footer"></a>
+                </div>
+
+                <div class="footer__btn">
+                    <a href="../donate/index.html"><button class="btn__donate">donate for volunteers</button></a>
+                </div>
+
                 <div class="social">
-                    <div class="footer__logo">
-                        <a href="../main/index.html"><img src="../../assets/icons/logo_footer.png" alt="logo footer"></a>
-                    </div>
-
-                    <div class="footer__btn">
-                        <a href="../donate/index.html"><button class="btn__donate">donate for volunteers</button></a>
-                    </div>
-
                     <div class="social__item">
                         <a class="" href="https://ru-ru.facebook.com">
                             <div class="icon__background">
@@ -201,8 +215,6 @@
                     </div>
                 </div>
 
-                <div class="padding__beetween"></div>
-
                 <div class="links">
                     <div class="links__item"><a class="footer__link" href="../main/index.html">About</a></div>
                     <div class="links__item"><a class="footer__link" href="#">Map</a></div>
@@ -212,20 +224,19 @@
                     <div class="links__item"><a class="footer__link" href="#">Contact us</a></div>
                 </div>
 
-                <div class="padding__beetween2"></div>
-
                 <div class="subscribe">
                     <h1 class="subscribe__title">Subscribe to our news</h1>
                     <form class="subscribe__email" action="">
                         <input class="subscribe__input" type="email" placeholder="Enter your email">
                         <button type="submit" class="subscribe__btn">Submit</button>
                     </form>
-
-                    <div class="disigned-by">
-                        <h4 class="designer">Designed by Alisa Samborskaya</h4>
-                        <h4  class="designer">©RSSchool & ©Yem Digital 2021</h4>
-                    </div>
                 </div>
+
+                <div class="disigned-by">
+                    <h4 class="designer">Designed by Alisa Samborskaya</h4>
+                    <h4  class="designer">©RSSchool & ©Yem Digital 2021</h4>
+                </div>
+                
             </div><!--./footer__inner-->
         </div><!--./container-->
     </footer>
