@@ -1210,6 +1210,7 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     }
 
     .how-it-works {
+        position: relative;
         padding-right: 88px;
         padding-left: 38px;
     }
