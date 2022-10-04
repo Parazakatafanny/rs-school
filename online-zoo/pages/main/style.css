@@ -991,6 +991,13 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     color: #D31414;
 }
 
+.vector__item {
+    display: none;
+}
+.vector__item2 {
+    display: none;
+}
+
 /* header
 ================================ */
 @media (max-width: 1300px) {
@@ -1001,7 +1008,7 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     }
 
     .header__section {
-        width: 630px;
+        width: 100%;
     }
     
     .header__item {
@@ -1407,9 +1414,10 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     }
 }
 
+
 /* backstage
 ================================ */
-@media (max-width: 900px) {
+@media (max-width: 864px) {
     .backstage__img {
         display: none;
     }
@@ -1432,12 +1440,16 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 890px) {
     .pets {
         padding-top: 0;
         margin-top: 0;
         background-image: url(../../assets/images/strelitzia640.png) ,
                           url(../../assets/images/palm_foto640.png);
+    }
+
+    .pets__inner {
+        justify-content: space-around;
     }
 
     .pet__img {
@@ -1596,9 +1608,21 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 .vector__item, .vector__item2 {
     display: none;
 }
+/* Pick and feed */
+@media (max-width: 880px) {
+    .title__sub {
+        width: 100%;
+    }
+    .feed__text {
+        width: 100%;
+    }
+    .feed__text2 {
+        width: 100%;
+    }
+}
 
 /* Pick and feed */
-@media (max-width: 700px) {
+@media (max-width: 880px) {
     .vector__item {
         display: block;
         position: absolute;
@@ -1742,13 +1766,16 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     }
 
     .social {
-        margin-left: 85%;
+        margin-left: 80%;
         padding-left: 0;
         grid-column-start: 5;
         grid-column-end: 6;
         grid-row-start: 1;
         grid-row-end: 3;
         padding-bottom: 32px;
+    }
+    .icon__background {
+        margin-right: 0;
     }
 
     .social__item {
