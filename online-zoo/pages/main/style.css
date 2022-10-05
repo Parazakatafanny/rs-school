@@ -1124,6 +1124,7 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 }
 
 @media (max-width: 1300px) {
+
     .pets {
         padding-top: 0;
         margin-top: 60px;
@@ -1415,10 +1416,20 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     }
 }
 
+@media (max-width: 1448px) {
+    .backstage {
+        height: 605px;
+        background-image: inherit;
+    }
+}
+
 
 /* backstage
 ================================ */
-@media (max-width: 864px) {
+@media (max-width: 891px) {
+    .backstage .container {
+        max-width: 600px;
+    }
     .backstage__img {
         display: none;
     }
@@ -1440,8 +1451,13 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
         margin-bottom: 20px;
     }
 }
-
+@media (max-width: 901px) {
+    .pets .container {
+        max-width: 600px;
+    }
+}
 @media (max-width: 890px) {
+
     .pets {
         padding-top: 0;
         margin-top: 0;
@@ -1923,10 +1939,10 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 }
 @media (max-width: 800px) {
     .slide__left {
-        left: 40%;
+        left: 38%;
     }
     .slide__right {
-        right: 40%;
+        right: 38%;
     }
 }
 /* pick-and-feed */
