@@ -270,7 +270,15 @@ body {
     opacity: 1;
 }
 
+.line__item.active .layer {
+    opacity: 1;
+}
+
 .line__item:hover .price {
+    color: #FE9013;
+}
+
+.line__item.active .price {
     color: #FE9013;
 }
 

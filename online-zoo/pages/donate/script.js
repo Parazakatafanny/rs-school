@@ -5,6 +5,25 @@ let dollarSign = document.querySelector('.dollar-sign')
 let headerBurger = document.querySelector('.header__burger')
 let navWraper = document.querySelector('.nav-wrapper')
 
+let amountItems = document.querySelectorAll('.line__item')
+let amountInput = document.querySelector('.amount__input')
+
+amountItems.forEach((amountItem) => {
+    amountItem.addEventListener('click', () => {
+        amountItems.forEach((i) => {
+            i.classList.remove('active');
+        });
+
+        amountItem.classList.add('active');
+
+        let price = amountItem.querySelector('.price').innerHTML;
+        price = price.slice(1)
+
+        amountInput.value = price;
+    });
+});
+
+
 emailInput.addEventListener('input', () => {
     if (emailInput.value == '') {
         subscribeButton.classList.remove('invalid')
@@ -19,6 +38,15 @@ emailInput.addEventListener('input', () => {
         subscribeButton.classList.add('valid')
     }
 });
+
+numberInput.addEventListener('keydown', (e) => {
+    if (numberInput.value.toString().length > 3) {
+        if (e.code.toString().includes('Digit')) {
+            e.preventDefault();
+            return false;
+        }
+    }
+})
 
 numberInput.addEventListener('input', () => {
     if (numberInput.value == '') {
