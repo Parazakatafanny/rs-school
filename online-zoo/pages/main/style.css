@@ -1418,7 +1418,7 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 
 @media (max-width: 1448px) {
     .backstage {
-        height: 605px;
+        height: 520px;
         background-image: inherit;
     }
 }
