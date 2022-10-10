@@ -3,6 +3,10 @@ let subscribeButton = document.querySelector('.subscribe__btn')
 let headerBurger = document.querySelector('.header__burger')
 let navWraper = document.querySelector('.nav-wrapper')
 
+const testimonialsItems = document.querySelectorAll('.testimonials__item')
+const testimonialsPopup = document.querySelector('.testimonials__popup')
+const exitPopup = document.querySelector('.popup__exit')
+
 emailInput.addEventListener('input', () => {
     if (emailInput.value == '') {
         subscribeButton.classList.remove('invalid')
@@ -22,3 +26,17 @@ headerBurger.addEventListener ('click', () => {
     headerBurger.classList.toggle('active')
     navWraper.classList.toggle('active')
 })
+
+testimonialsItems.forEach((item) => {
+    let itemClone;
+    item.addEventListener('click', () => {
+        testimonialsPopup.style.display = 'block'
+        itemClone = item.cloneNode(true)
+        testimonialsPopup.appendChild(itemClone)
+    });
+
+    exitPopup.addEventListener('click', () => {
+        itemClone.remove();
+        testimonialsPopup.style.display = 'none'
+    })
+});
