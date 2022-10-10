@@ -58,6 +58,10 @@ body {
 /* header
 ================================ */
 
+.burger__logo {
+    display: none;
+}
+
 .header__link {
     color: #fff;
     text-decoration: none;
@@ -952,7 +956,7 @@ body {
         height: 13px;
         width: auto;
         bottom: 1px;
-        left: 23px;
+        left: 5px;
     }
 
     .title__watch {
@@ -1050,6 +1054,12 @@ body {
         position: fixed;
         width: 100%;
         z-index: 9999;
+    }
+
+    .burger__logo {
+        margin-top: 14px;
+        margin-left: 11px;
+        display: block;
     }
 
     .header__logo {
