@@ -263,14 +263,26 @@ body {
 
 .pets__inner {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
 }
+
+.pets__slide {
+    width: 100%;
+}
+
+.pets__slide.ref {
+    display: none;
+}
+
+.pets__above {
+    margin-bottom: 20px;
+}
+
 
 .pets__card {
     border: 1px solid #F9804B;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-right: 25px;
 }
 
 .pets__card:hover .pet__photo {
@@ -372,6 +384,24 @@ body {
     padding: 10px 13px 13px 0;
 }
 
+.slider {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.to-right {
+    position: absolute;
+    left: 940px;
+    transform: all .5s linear;
+}
+
+.to-left {
+    position: absolute;
+    right: 940px;
+    transform: all .5s linear;
+}
+
 /* pets-button
 ================================ */
 
@@ -421,6 +451,7 @@ body {
     border-radius: 50%;
     background: linear-gradient(45deg,#F9804B,#FE9013 100%);
     transition: background .3s  ease;
+    z-index: 100;
 }
 
 .slide__left:active, .slide__right:active {
@@ -437,6 +468,7 @@ body {
     position: absolute;
     cursor: pointer;
     top: 513px;
+    z-index: 100;
     right: 138px;
     width: 62px;
     height: 62px;
@@ -592,15 +624,30 @@ body {
     margin-bottom: 45px;
 }
 
+.general-slider-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.slider-wrapper {
+    overflow: hidden;
+}
+
 .testimonials__items {
     display: flex;
-    justify-content: space-between;
+    position: relative;
+    transition: all .5s linear;
 }
 
 .testimonials__item {
     border-radius: 20px;
+    margin-right: 24px;
     background: linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%),
 linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248, 0.66) 50.74%, #E0D8F0 80.49%, #EAF7FE 127.9%, #EAF7FE 149.54%);
+}
+
+.testimonials__item:hover {
+    cursor: pointer;
 }
 
 .testimonials__item__inner {
@@ -652,6 +699,28 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
     color: #767474;
 }
 
+.testimonials__popup {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    background: rgba(0, 0, 0, .9);
+    display: none;
+}
+
+.popup__exit {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    z-index: 100;
+    font-size: 60px;
+    font-weight: 200;
+    color: #FFF;
+    cursor: pointer;
+}
+
 /* scroll
 ================================ */
 .testimonials__scroll {
@@ -695,6 +764,35 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 .scroll:hover {
     background: #d87b11;
 }
+
+.slider-range {
+    position: absolute;
+    top: -1px;
+}
+
+input[type=range] {
+    width: 595px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    height: 6px;
+    background-color: #F5F7F6;
+    border-radius: 5px;
+}
+
+  input[type=range]::-webkit-slider-thumb {
+    background: #d87b11;
+    cursor: pointer;
+    width:115px;
+    height: 6px;
+    -webkit-appearance: none;
+    border-radius: 5px;
+
+}
+
 
 /* testimonials button
 ================================ */
@@ -1092,6 +1190,9 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 /* PETS
 ================================ */
 @media (max-width: 1500px) {
+    .pets__above {
+        margin-top: 90px;
+    }
     .pets {
         padding-top: 0;
         margin-top: 60px;
@@ -1099,6 +1200,9 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 
     .pets__card {
         margin-bottom: 0;
+    }
+
+    .pets__below {
         margin-top: 92px;
     }
     
@@ -1124,6 +1228,9 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 }
 
 @media (max-width: 1300px) {
+    .pets__card {
+        margin-right: 20px;
+    }
 
     .pets {
         padding-top: 0;
@@ -1148,6 +1255,8 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 
     .pets__card {
         margin-bottom: 0;
+    }
+    .pets__below {
         margin-top: 92px;
     }
     
@@ -1222,6 +1331,25 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
         padding-right: 30px;
     }
 }
+
+.testimonials__popup .testimonials__item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    width: 298px;
+}
+.testimonials__popup .testimonials__item__inner {
+    width: 294px;
+    height: 390px;
+}
+
+.testimonials__popup .testimonials__text {
+    width: 270px;
+    height: 305px;
+}
+
 /* testimonials
 ================================ */
 @media (max-width: 1300px) {
@@ -1242,16 +1370,8 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
         width: 390px;
     }
 
-    .testimonials__scroll__inner {
-        width: 389px;
-    }
-
-    .scroll {
-        width: 75px;
-    }
-
-    .testimonials__item:last-child {
-        display: none;
+    input[type=range] {
+        width: 386px;
     }
 
     .testimonials__item__inner {
@@ -1317,7 +1437,9 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
         padding-left: 40px;
     }
 }
-
+.burger__logo {
+    display: none;
+}
 /* header
 ================================ */
 @media (max-width: 845px) {
@@ -1331,6 +1453,12 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
         height: 34px;
     }
 
+    .burger__logo {
+        margin-top: 14px;
+        margin-left: 11px;
+        display: block;
+    }
+
     .header__logo {
         font-size: 12px;
         border: 0;
@@ -1342,7 +1470,7 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
         height: 13px;
         width: auto;
         bottom: 1px;
-        left: 23px;
+        left: 5px;
     }
 
     .title__watch {
@@ -1453,10 +1581,22 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 }
 @media (max-width: 901px) {
     .pets .container {
-        max-width: 600px;
+        max-width: 650px;
+    }
+    .pets__card {
+        margin-right: 10px;
+    }
+    .pets__above .pets__card:last-child {
+        display: none;
+    }
+    .pets__below .pets__card:last-child {
+        display: none;
     }
 }
 @media (max-width: 890px) {
+    .pets__above {
+        margin-top: 10px;
+    }
 
     .pets {
         padding-top: 0;
@@ -1473,6 +1613,12 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
         width: 285.24px;
         height: 285.24px;
     }
+    .pets__above .pets__card:last-child {
+        display: none;
+    }
+    .pets__below .pets__card:last-child {
+        display: none;
+    }
 
     .pet__photo {
         width: 285.24px;
@@ -1485,15 +1631,10 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 
     .pets__card {
         margin-bottom: 0;
+    }
+
+    .pets__below {
         margin-top: 92px;
-    }
-
-    .pets__card.card__first__line {
-        margin-top: 15px;
-    }
-
-    .pets__card.card__last__line {
-        display: none;
     }
 
     .about__pets {
@@ -1644,14 +1785,14 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
         display: block;
         position: absolute;
         top: -17px;
-        left: 130px;
+        left: 24%;
     }
 
     .vector__item2 {
         display: block;
         position: absolute;
         top: -17px;
-        left: 342px;
+        left: 57%;
     }
 
     .works__vector {
@@ -1736,6 +1877,7 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 
     .testimonials__item {
         margin-bottom: 15px;
+        margin-right: 0;
         width: 600px;
     }
 
@@ -1922,19 +2064,29 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
         background-image: url(../../assets/images/strelitzia\ 1\ \(320\).png) , 
                           url(../../assets/images/palm_foto\ \(320\).png)
     }
+    .about__text {
+        padding: 12px 0 0px 12px;
+    }
     .pets__card {
-        margin-bottom: 0;
+        margin-bottom: 0; 
+        width: 285.24px;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .pets__below {
         margin-top: 20px;
     }
+
     .pets__btn {
         padding-top: 0;
         margin-top: 10px;
         padding-bottom: 60px;
     }
-}
-@media (max-width: 590px) {
     .pets__inner {
+        align-items: center;
         justify-content: center;
+        flex-direction: column;
     }
 }
 @media (max-width: 800px) {
@@ -2004,10 +2156,6 @@ linear-gradient(315.75deg, rgba(254, 189, 171, 0.74) 30.06%, rgba(243, 169, 248,
 }
 /* testimonials*/
 @media (max-width: 619px) {
-    .testimonials__inner {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
     .testimonials__title {
         padding-top: 30px;
         margin-bottom: 10px;
