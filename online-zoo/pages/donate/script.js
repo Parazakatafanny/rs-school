@@ -14,6 +14,8 @@ numberInput.addEventListener('input', () => {
         if (amountInput.value == amountPrises[i]) {
             checkActiveAmountItem()
             amountItems[i].classList.add('active')
+        } else {
+            amountItems[i].classList.remove('active')
         }
     }
 })
@@ -77,8 +79,9 @@ numberInput.addEventListener('input', () => {
         dollarSign.classList.add('valid__dollar')
     }
 })
-
+let backgroundWrapper = document.querySelector('.background__wrapper')
 headerBurger.addEventListener ('click', () => {
     headerBurger.classList.toggle('active')
+    backgroundWrapper.classList.toggle('active')
     navWraper.classList.toggle('active')
 })
