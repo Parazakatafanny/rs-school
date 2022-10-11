@@ -1048,6 +1048,17 @@ body {
 .header .container {
     height: 100%;
 }
+
+.background__wrapper.active {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 60;
+    background: rgba(0, 0, 0, .9);
+
+}
  /* Navigation */
  @media (max-width: 845px) {
     .header {
@@ -1073,7 +1084,7 @@ body {
     }
 
     .nav-wrapper {
-        z-index: 99;
+        z-index: 999;
         position: absolute;
         align-items: flex-start;
 
