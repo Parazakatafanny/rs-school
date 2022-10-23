@@ -1,0 +1,149 @@
+body {
+  font-family: "Fuzzy Bubbles", cursive;
+  font-size: 25px;
+  background-image: url(https://i.pinimg.com/564x/64/66/cf/6466cfcf1abec2e8a689dcaa3dc71a3c.jpg);
+}
+
+button {
+  color: white;
+  width: 100px;
+  margin-right: 10px;
+  padding: 15px 0;
+  border: 0;
+  border-radius: 10px;
+  font-family: "Fuzzy Bubbles", cursive;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    to right,
+    #e89eef 0%,
+    #e2c20f 51%,
+    #e89eef 100%
+  );
+  background-size: 200% auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-position: right center;
+}
+
+.soundOff {
+  width: auto;
+  height: 50px;
+}
+
+.soundOff2 {
+  width: auto;
+  height: 50px;
+  display: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 410px;
+
+  margin: 0 auto;
+}
+
+.board {
+  position: relative;
+  margin: 0 auto;
+  width: 400px;
+  height: 400px;
+  border: 10px solid #e89eef;
+  background-color: #f8d0e8;
+}
+
+.cell {
+  transition: all 0.1s linear;
+  background-image: url(https://i.pinimg.com/564x/65/7f/47/657f47a06220f415af21e13bc8d47cce.jpg);
+  background-size: cover;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  outline: 0.1px solid #e89eef;
+  cursor: pointer;
+}
+
+.size-options {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.size-options div {
+  margin-left: 10px;
+  transition: color 0.2s linear;
+  user-select: none;
+}
+
+.size-options div:hover {
+  color: #e2c20f;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.buttons-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons-container img {
+  cursor: pointer;
+}
+
+.moves {
+  display: flex;
+}
+
+.timer {
+  display: flex;
+}
+
+.label {
+  margin-right: 10px;
+}
+
+.titleScore {
+  text-align: center;
+}
+
+@media (max-width: 446px) {
+  .container {
+    max-width: 320px;
+  }
+  .board {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 345px) {
+  body {
+    font-size: 18px;
+  }
+  .container {
+    max-width: 310px;
+  }
+  .board {
+    width: 290px;
+    height: 290px;
+  }
+
+  size-options div {
+    margin-left: 5px;
+  }
+}
