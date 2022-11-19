@@ -1,0 +1,140 @@
+.about {
+    height: 550px;
+    font-family: $MAIN_FONT;
+
+    &__inner {
+        display: flex;
+    }
+
+    &__sub-title {
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        font-weight: 300;
+        font-size: 16px;
+        color: $MAIN_COLOR_ACTIVE;
+        letter-spacing: 2px;
+    }
+
+    &__title {
+        margin-bottom: 20px;
+        font-weight: 700;
+        line-height: 1.3;
+        width: 50%;
+        font-size: 48px;
+    }
+
+    &__text {
+        z-index: 100;
+        padding-top: 70px;
+    }
+
+    &__text-inner {
+        width: 80%;
+        color: $SUB_COLOR_FONTS;
+        line-height: 1.4;
+        font-weight: 300;
+    }
+
+    &__btn {
+        margin-top: 40px;
+        width: 180px;
+        height: 45px;
+        border-radius: 45px;
+        font-family: $MAIN_FONT;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: $MAIN_COLOR_PAGE;
+        background: white;
+        border: 0;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+        transition: .3s;
+
+        &:hover {
+            cursor: pointer;
+            background: $MAIN_COLOR_ACTIVE;
+            box-shadow: 0 15px 20px rgba(46, 229, 157, .4);
+            color: white;
+            transform: translateY(-7px);
+        }
+    }
+
+    &__img {
+        width: 50%;
+    }
+
+}
+
+.img-hummingbird {
+    height: 600px;
+    transform: scale(-1, 1);
+}
+
+@media (max-width: 990px) {
+    .about__text {
+        padding-top: 40px; 
+    }
+
+    .img-hummingbird {
+        height: 500px;
+    }
+}
+
+@media (max-width: 990px) {
+    .about {
+        height: 450px;
+    }
+
+    .about__text {
+        padding-top: 0; 
+    }
+
+    .img-hummingbird {
+        height: 500px;
+    }
+
+    .about__title {
+        margin-bottom: 10px;
+        width: 60%;
+    }
+}
+
+@media (max-width: 795px) {
+    .about__img {
+        display: none;
+    }
+
+    .about {
+        height: 350px;
+    }
+}
+
+@media (max-width: 540px) {
+    .about__btn {
+        margin-top: 20px;
+    }
+
+    .about {
+        height: 400px;
+    }
+  }
+
+  @media (max-width: 460px) {
+    .about__sub-title {
+        margin: 10px 0;
+      }
+    
+    .about__btn {
+        margin-top: 20px;
+    }
+
+    .about__title {
+        margin-bottom: 10px;
+        width: 90%;
+    }
+
+    .about {
+        height: 350px;
+    }
+  }
