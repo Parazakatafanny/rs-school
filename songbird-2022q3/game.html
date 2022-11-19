@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marhey&family=Ubuntu:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <title>BirdSong</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header__inner">
+
+        <div class="header__logo">
+          <span class="logo-color">B</span>ird<span class="logo-color">S</span>ong
+          <img class="logotype" src="<%=require('./src/assets/logo-bird.png')%>" alt="logotype bird">
+        </div>
+
+        <nav class="header__menu">
+          <ul class="header__section">
+            <li class="header__item">
+              <a class="header__link translate" id="main" href="index.html"></a>
+            </li>
+            <li class="header__item">
+              <a class="header__link translate active-link" id="game" href="game.html"></a>
+            </li>
+            <li class="header__item">
+              <a class="header__link translate" id="gallery" href="index.html#galleryFoto"></a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="switch">
+          <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
+          <label for="language-toggle"></label>
+          <span class="on">RU</span>
+          <span class="off">EN</span>
+        </div>
+
+
+        <div class="header__burger">
+          <span></span>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <div class="burger__back"></div>
+
+  <main class="game">
+    <div class="container">
+      <div class="game__window">
+        <section class="game__progress">
+          <div class="progress__item active translate" id="warm-up"></div>
+          <div class="progress__item translate" id="sparrows"></div>
+          <div class="progress__item translate" id="forest-birds"></div>
+          <div class="progress__item translate" id="songbirds"></div>
+          <div class="progress__item translate" id="birds-of-prey"></div>
+          <div class="progress__item translate" id="seabirds"></div>
+        </section>
+
+        <h1 class="game__score translate" id="score"></h1>
+
+        <section class="game__inner">
+        </section>
+
+        <div class="game__button">
+          <button class="next-lvl translate" id="next-level">Next Level</button>
+        </div>
+      </div>
+
+      <section class="results flex-col-center">
+        <h1 class="results__title translate" id="congratulations"></h1>
+        <h2 class="results__sub-title"></h2>
+        <button class="results__btn translate" id="try-again"></button>
+      </section>
+    </div>
+  </main>
+
+  <div class="ap">
+
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+
+        <div class="footer__about">
+          <h1 class="header__logo">
+            <span class="logo-color">B</span>ird<span class="logo-color">S</span>ong
+            <img class="logotype" src="<%=require('./src/assets/logo-bird.png')%>" alt="logotype bird">
+          </h1>
+          <p class="footer__about-sub translate" id="acquaintance">
+          </p>
+
+          <div class="footer__play">
+            <h3 class="play__title translate" id="want-play"></h3>
+            <a href="game.html"><button class="play__btn translate" id="play"></button></a>
+          </div>
+        </div>
+
+        <div class="footer__social flex-col-center">
+          <h3 class="services__title translate" id="contacts"></h3>
+          <div class="social__links">
+            <a href="https://github.com/Parazakatafanny"><img class="social__link"
+                src="<%=require('./src/assets/github.png')%>" alt="GitHub"></a>
+            <a href="#"><img class="social__link" src="<%=require('./src/assets/facebook.png')%>" alt="Facebook"></a>
+            <a href="#"><img class="social__link" src="<%=require('./src/assets/instagram.png')%>" alt="Instagram"></a>
+          </div>
+
+          <p class="footer__year">2022</p>
+
+          <a class="rs-school__link" href="https://rs.school/js/">
+            <img class="rs-school__img" src="<%=require('./src/assets/rs-school.png')%>" alt="rs-school">
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
