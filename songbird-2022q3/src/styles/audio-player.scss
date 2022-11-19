@@ -1,0 +1,104 @@
+.audio {
+  &-player {
+    display: flex;
+    user-select: none;
+    border: 1px solid $SUB_COLOR_FONTS;
+    padding: 8px 5px;
+    width: 300px;
+    position: relative;
+  }
+
+  &-play {
+    width: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-stop {
+    width: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-volume {
+    position: absolute;
+    width: 50px;
+    top: 5px;
+    right: 5px;
+    height: 10px;
+    -webkit-appearance: none;
+    background-color: $MAIN_COLOR_FONTS;
+    border-radius: 20px;
+    overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &::-webkit-slider-runnable-track {
+      height: 10px;
+      -webkit-appearance: none;
+      color: #13bba4;
+  }
+  
+
+    &::-webkit-slider-thumb {
+      width: 10px;
+      -webkit-appearance: none;
+      height: 10px;
+      cursor: pointer;
+      background: $SUB_COLOR_FONTS;
+      box-shadow: -100px 0 0 100px $MAIN_COLOR_ACTIVE;
+  }
+  }
+
+  &-track {
+    width: 200px;
+    height: 10px;
+    -webkit-appearance: none;
+    background-color: $MAIN_COLOR_FONTS;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 13px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &::-webkit-slider-runnable-track {
+      height: 10px;
+      -webkit-appearance: none;
+      color: #13bba4;
+  }
+  
+
+    &::-webkit-slider-thumb {
+      width: 20px;
+      -webkit-appearance: none;
+      height: 10px;
+      cursor: pointer;
+      background: $SUB_COLOR_FONTS;
+      box-shadow: -100px 0 0 100px $MAIN_COLOR_ACTIVE;
+  }
+  }
+
+  &-timer {
+    color: $SUB_COLOR_FONTS;
+    position: absolute;
+    top: 35px;
+    left: 49px;
+  }
+
+  &-length {
+    color: $SUB_COLOR_FONTS;
+    position: absolute;
+    top: 35px;
+    right: 15px;
+  }
+
+
+}
