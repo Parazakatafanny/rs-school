@@ -1,0 +1,266 @@
+.header {
+  background-color: $MAIN_COLOR_PAGE;
+
+  &__inner {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__section {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__menu {
+    transition: top .3s ease;
+    width: 100%;
+  }
+
+  &__burger {
+    display: none;
+  }
+
+  &__logo {
+    font-family: $MAIN_FONT_SUB;
+    font-size: 27px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: $MAIN_FONT;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: $MAIN_COLOR_FONTS;
+    margin-left: 40px;
+    transition: all .4s linear;
+
+    &:hover {
+      color: $MAIN_COLOR_ACTIVE;
+    }
+  }
+
+  &__burger {
+    display: none;
+
+    &.active-burger:before {
+      transform: rotate(45deg);
+      top: 4px;
+    }
+
+    &.active-burger:after {
+      transform: rotate(-45deg);
+      bottom: 4px;
+    }
+
+    &.active-burger span {
+      transform: scale(0);
+    }
+  }
+}
+
+.logotype {
+  height: 50px;
+}
+
+.burger__back {
+  position: absolute;
+  display: none;
+  top: 0;
+  z-index: 220;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.604);
+
+  &.active-back {
+    display: block;
+  }
+}
+
+.logo-color {
+  color: $MAIN_COLOR_ACTIVE;
+}
+
+.active-link {
+  color: $MAIN_COLOR_ACTIVE;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  font-family: $MAIN_FONT;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+
+  & .on,
+  & .off {
+    position: absolute;
+    top: 12px;
+    pointer-events: none;
+    text-transform: uppercase;
+    width: 50%;
+  }
+
+  & .on {
+    left: 0;
+    padding-left: 2px;
+    color: $MAIN_COLOR_ACTIVE;
+  }
+
+  & .off {
+    right: 0;
+    padding-right: 4px;
+    color: $MAIN_COLOR_FONTS;
+  }
+}
+
+input.check-toggle-round-flat:checked~.off {
+  color: $MAIN_COLOR_ACTIVE;
+}
+
+input.check-toggle-round-flat:checked~.on {
+  color: $MAIN_COLOR_FONTS;
+}
+
+.check-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+
+.check-toggle+label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+input.check-toggle-round-flat+label {
+  padding: 2px;
+  width: 97px;
+  height: 35px;
+  background-color: $MAIN_COLOR_ACTIVE;
+  border-radius: 60px;
+}
+
+input.check-toggle-round-flat+label:before,
+input.check-toggle-round-flat+label:after {
+  display: block;
+  position: absolute;
+  content: "";
+}
+
+input.check-toggle-round-flat+label:before {
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  right: 2px;
+  background-color: $MAIN_COLOR_ACTIVE;
+  border-radius: 60px;
+}
+
+input.check-toggle-round-flat+label:after {
+  top: 4px;
+  left: 4px;
+  bottom: 4px;
+  width: 48px;
+  background-color: $MAIN_COLOR_FONTS;
+  border-radius: 52px;
+  transition: margin 0.2s;
+}
+
+input.check-toggle-round-flat:checked+label:after {
+  margin-left: 44px;
+}
+
+@media (max-width: 648px) {
+  .header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 500;
+  }
+
+  .header__menu {
+    z-index: 99;
+    position: absolute;
+
+    top: -339px;
+    left: 0;
+    margin-left: 0px;
+    height: 339px;
+
+    background: $MAIN_COLOR_PAGE;
+
+    &.active-header {
+      top: 60px;
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+
+  .header__section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header__item {
+    margin-bottom: 40px;
+  }
+
+  .header__burger {
+    display: block;
+    position: relative;
+    width: 18px;
+    height: 10px;
+    margin-left: auto;
+    margin-right: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &span {
+      background-color: #fff;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      left: 0;
+      top: 3.5px;
+      border-radius: 2px;
+      transition: all .1s linear;
+    }
+
+    &:before,
+    &:after {
+      content: '';
+      background-color: #fff;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      left: 0;
+      border-radius: 2px;
+      transition: all .1s linear;
+    }
+
+    &:before {
+      top: 0;
+    }
+
+    &:after {
+      bottom: 0;
+    }
+  }
+
+  .switch {
+    margin-left: 20px;
+  }
+
+}
