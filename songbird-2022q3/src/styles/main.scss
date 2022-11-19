@@ -1,0 +1,274 @@
+.container {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+body {
+  color: $MAIN_COLOR_FONTS;
+  background-color: $MAIN_COLOR_PAGE;
+}
+
+.main {
+  height: 650px;
+  overflow: hidden;
+
+  &__inner {
+    position: relative;
+  }
+
+  &__img {
+    margin-bottom: 40px;
+    margin-top: 40px;
+  }
+
+  &__title {
+    width: 50%;
+    padding-top: 50px;
+    line-height: 1.3;
+    user-select: none;
+    font-family: $MAIN_FONT;
+    font-size: 52px;
+    margin-bottom: 115px;
+  }
+
+  &__back {
+    position: relative;
+    width: 80%;
+    height: 300px;
+    background: linear-gradient(90deg, $MAIN_COLOR_ACTIVE 0%, rgba(1, 106, 92, 1) 100%);
+    ;
+  }
+
+  &__front {
+    position: absolute;
+    top: 15%;
+    right: 0;
+    width: 65%;
+    height: 300px;
+    background: linear-gradient(0deg, rgb(21, 21, 21) 10%, rgb(33, 33, 33) 100%);
+
+  }
+
+  &__play-game {
+    position: absolute;
+    z-index: 100;
+    margin-top: 50px;
+    padding-left: 20px;
+    width: 25%;
+  }
+
+  &__back-text {
+    width: 200px;
+    margin-bottom: 5px;
+    color: $MAIN_COLOR_PAGE;
+    font-family: $MAIN_FONT;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  &__about-parrot {
+    position: absolute;
+    top: 140%;
+    right: 50%;
+    z-index: 100;
+    width: 200px;
+    padding: 10px 20px;
+    background: rgba(94, 94, 94, 0.442);
+    font-family: $MAIN_FONT;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  &__sub-title {
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  &__img {
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    z-index: 200;
+  }
+
+  &__btn {
+    margin-top: 40px;
+    width: 180px;
+    height: 45px;
+    border-radius: 45px;
+    font-family: $MAIN_FONT;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-align: center;
+    font-weight: 700;
+    color: $MAIN_COLOR_PAGE;
+    background: white;
+    border: 0;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+    transition: .3s;
+
+    &:hover {
+      cursor: pointer;
+      background: $MAIN_COLOR_PAGE;
+      box-shadow: 0 15px 20px $MAIN_COLOR_PAGE;
+      color: white;
+      transform: translateY(-7px);
+    }
+  }
+}
+
+.img-parrot {
+  height: 500px;
+  overflow: hidden;
+}
+
+@media (max-width: 1640px) {
+  .main__about-parrot {
+    right: 48%;
+  }
+}
+
+@media (max-width: 1480px) {
+  .main__about-parrot {
+    right: 46%;
+  }
+}
+
+@media (max-width: 1330px) {
+  .main__about-parrot {
+    right: 44%;
+  }
+}
+
+@media (max-width: 1190px) {
+  .main__about-parrot {
+    right: 42%;
+  }
+}
+
+@media (max-width: 1070px) {
+  .main__about-parrot {
+    right: 40%;
+  }
+
+  .img-parrot {
+    height: 400px
+  }
+
+  .main__img {
+    top: 40%;
+    left: 55%;
+  }
+
+  .container {
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 990px) {
+  .main__about-parrot {
+    right: 38%;
+  }
+
+  .main__title {
+    width: 80%;
+  }
+
+  .main__play-game {
+    margin-top: 40px;
+    padding-left: 60px;
+  }
+}
+
+@media (max-width: 920px) {
+  .main__about-parrot {
+    right: 36%;
+  }
+}
+
+@media (max-width: 920px) {
+  .main__about-parrot {
+    right: 36%;
+  }
+
+  .container {
+    max-width: 860px;
+  }
+}
+
+@media (max-width: 850px) {
+  .main__about-parrot {
+    right: 34%;
+  }
+}
+
+@media (max-width: 795px) {
+  .main__about-parrot {
+    top: 160%;
+    right: 22%;
+  }
+
+  .main__img {
+    display: none;
+  }
+
+  .container {
+    max-width: 760px;
+  }
+}
+@media (max-width: 765px) {
+  .container {
+    max-width: 740px;
+  }
+}
+
+@media (max-width: 726px) {
+
+  .main__front,
+  .main__about-parrot {
+    display: none;
+  }
+
+  .main__play-game {
+    margin-top: 40px;
+    padding-left: 160px;
+  }
+
+  .main__title {
+    margin-bottom: 50px;
+  }
+
+  .container {
+    max-width: 680px;
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (max-width: 540px) {
+  .container {
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 460px) {
+  .container {
+    max-width: 360px;
+  }
+
+  .main__play-game {
+    margin-top: 40px;
+    padding-left: 60px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    max-width: 350px;
+  }
+}
