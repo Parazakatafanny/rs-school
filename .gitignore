@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Exclude builds for gh-pages
+!songbird-2022q3/dist
