@@ -1,3 +1,7 @@
+interface ServerResponse {
+    status: 'ok' | 'error';
+}
+
 export interface Article {
     source: {
         id: number;
@@ -12,14 +16,12 @@ export interface Article {
     content: string;
 }
 
-export interface ResponseEverything {
-    status: string;
+export interface ResponseEverything extends ServerResponse {
     totalResults: number;
     articles: Article[];
 }
 
-export interface ResponseSource {
-    status: 'ok' | 'error';
+export interface ResponseSource extends ServerResponse {
     sources: Source[];
 }
 
