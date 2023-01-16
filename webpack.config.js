@@ -23,8 +23,12 @@ const baseConfig = {
         use: 'ts-loader'
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|jpg|jpeg|gif)$/i,
         type: 'asset/resource'
+      },
+      {
+        test: /\.svg$/i,
+        type: 'asset/source'
       },
       {
         test: /\.html$/i,
@@ -35,13 +39,14 @@ const baseConfig = {
   resolve: {
     extensions: ['.ts', '.js'],
     alias: {
-      '/src': path.resolve(__dirname, 'src')
+      '/src': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, 'src'),
     }
   },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, './dist'),
-    assetModuleFilename: 'src/assets/[name][ext]'
+    assetModuleFilename: './src/assets/[name][ext]'
   },
   plugins: [
     new HtmlWebpackPlugin({
