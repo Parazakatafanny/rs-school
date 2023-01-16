@@ -1,0 +1,26 @@
+@import './reset.scss';
+@import './garage.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  text-transform: uppercase;
+  font-size: 20px;
+  height: 40px;
+  margin-bottom: 40px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.footer {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-decoration: none;
+  font-size: 18px;
+  margin-top: 40px;
+}

@@ -1,0 +1,81 @@
+.create-panel,
+.update-panel,
+.button-panel {
+  display: flex;
+  gap: 5px;
+}
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+button {
+  width: 150px;
+  height: 30px;
+  border: 1px solid black;
+  text-transform: uppercase;
+}
+
+.numbers-of-cars {
+  margin-top: 40px;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.curretn-page {
+  margin: 25px 0;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.garage {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.garage__item {
+  &-panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+  }
+
+  &-race {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px grey dashed;
+  }
+
+  &-stop,
+  &-start {
+    border: 1px solid black;
+    padding: 5px 10px;
+    transition: background-color .2s linear;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(195, 196, 195);
+    }
+  }
+
+  &-track {
+    position: relative;
+    --track-width: 100%;
+    width: var(--track-width);
+    transition: transform 2s linear;
+  }
+
+  &-finish {
+    position: absolute;
+    bottom: 0;
+    right: 110px;
+    background-color: red;
+    width: 5px;
+    height: 20px;
+  }
+}
