@@ -1,7 +1,7 @@
 import NestedComponent from '../components/nested-component';
 import ControlPanel, { ControlPanelEvent } from '../components/garage/control-panel';
 import { Car } from '../interfaces/api';
-import CarTrack, { AnimationOptions, DrivingCar } from '../components/garage/car';
+import CarTrack, { AnimationOptions, CarTrackEvent, DrivingCar } from '../components/garage/car';
 
 export default class GaragePage extends NestedComponent {
   private controlPanel?: ControlPanel;
@@ -98,12 +98,19 @@ export default class GaragePage extends NestedComponent {
     carTrack.render();
     this.cartTracks.push(carTrack);
 
-    // carTrack.addEventListener(CarTrackEvent.SELECT_CAR, (selectedCar) => {});
+    carTrack.addEventListener(CarTrackEvent.REMOVE_CAR, (deletedCar) => {
+      this.deleteCar(deletedCar.id);
+      carTrack.delete();
+    });
+
+    carTrack.addEventListener(CarTrackEvent.SELECT_CAR, (selectedCar) => {
+      this.controlPanel?.setCarForUpdate(selectedCar);
+    });
   }
 
   private getCars() {
     return new Promise<void>((resolve, reject) => {
-      fetch('http://127.0.0.1:3000/garage?_page=1&_limit=99')
+      fetch('http://127.0.0.1:3000/garage?_page=1&_limit=7')
         .then((response) => {
           this.totalCars = +(response.headers.get('X-Total-Count') || '0');
           return response.json();
@@ -130,11 +137,20 @@ export default class GaragePage extends NestedComponent {
       .then((rdata) => this.addCar(rdata));
   }
 
-  public deleteCar(car: Car, garageItem: HTMLDivElement) {
-    fetch(`http://localhost:3000/garage/${car.id}`, {
+  private deleteCar(carId: number) {
+    fetch(`http://localhost:3000/garage/${carId}`, {
       method: 'DELETE',
     });
-    garageItem.remove();
+  }
+
+  private updateCar(car: Car) {
+    fetch(`http://localhost:3000/garage/${car.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(car),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   private attachEvents() {
@@ -158,6 +174,15 @@ export default class GaragePage extends NestedComponent {
 
     this.controlPanel.addEventListener(ControlPanelEvent.CREATE, (name: string, color: string) => {
       this.createNewCar({ name, color });
+    });
+
+    this.controlPanel.addEventListener(ControlPanelEvent.UPDATE_CAR, (updatedCar: Car) => {
+      this.cartTracks.forEach((carTrack) => {
+        if (carTrack.car.id === updatedCar.id) {
+          carTrack.update(updatedCar);
+          this.updateCar(updatedCar);
+        }
+      });
     });
   }
 }

@@ -38,6 +38,8 @@ export default class CarTrack extends NestedComponent {
 
   private carElem?: SVGSVGElement;
 
+  private carName?: HTMLElement;
+
   public isDriving = false;
 
   public isStopped = false;
@@ -83,13 +85,26 @@ export default class CarTrack extends NestedComponent {
     this.removeButton.textContent = 'remove';
     itemControlPanel.appendChild(this.removeButton);
 
-    const itemName = document.createElement('p');
-    itemName.classList.add('garage__item-name');
-    itemName.textContent = this.car.name;
-    itemControlPanel.appendChild(itemName);
+    this.carName = document.createElement('p');
+    this.carName.classList.add('garage__item-name');
+    this.carName.textContent = this.car.name;
+    itemControlPanel.appendChild(this.carName);
 
     this.renderCarTrack(this.garageItem);
     this.attachEvents();
+  }
+
+  public delete() {
+    this.garageItem?.remove();
+  }
+
+  public update(car: Car) {
+    if (!this.carElem) throw new Error();
+    if (!this.carName) throw new Error();
+
+    this.car = car;
+    this.carName.textContent = car.name;
+    this.carElem.style.fill = car.color;
   }
 
   public startEngine(): Promise<EngineData> {

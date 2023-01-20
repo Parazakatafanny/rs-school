@@ -15,6 +15,10 @@ button {
   height: 30px;
   border: 1px solid black;
   text-transform: uppercase;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .numbers-of-cars {
@@ -78,4 +82,28 @@ button {
     width: 5px;
     height: 20px;
   }
+}
+
+.create-panel__create-color,
+.update-panel__update-color {
+  border: 1px solid black;
+  height: 30px;
+}
+
+.create-panel__create-input,
+.update-panel__update-input {
+  border: 1px solid black;
+}
+
+.winner {
+  font-size: 38px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  line-height: 2;
+  text-align: center;
+  font-weight: 700;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
