@@ -1,31 +1,101 @@
 import CartSVG from '@/assets/car.svg';
 import { Car } from '../../interfaces/api';
+import NestedComponent from '../nested-component';
 
 type EngineData = { velocity: number; distance: number };
 
-enum AnimationOptions {
+export type DrivingCar = { theCar: Car; drivingTime: number };
+
+export enum AnimationOptions {
   stoped = 'stoped',
   reset = 'reset',
 }
 
-export default class CarTrack {
+export enum CarTrackEvent {
+  SELECT_CAR,
+  REMOVE_CAR,
+}
+
+type CarTracklEventFunction = {
+  [CarTrackEvent.REMOVE_CAR]: (car: Car) => void;
+  [CarTrackEvent.SELECT_CAR]: (car: Car) => void;
+};
+
+type SubsType = { [K in keyof CarTracklEventFunction]: CarTracklEventFunction[K][] };
+
+export default class CarTrack extends NestedComponent {
   private startButton?: HTMLDivElement;
 
   private stopButton?: HTMLDivElement;
+
+  private selectButton?: HTMLButtonElement;
+
+  private removeButton?: HTMLButtonElement;
+
+  private garageItem?: HTMLDivElement;
 
   private trackMark?: HTMLDivElement;
 
   private carElem?: SVGSVGElement;
 
-  private isDriving = false;
+  public isDriving = false;
 
-  private isStopped = false;
+  public isStopped = false;
 
-  constructor(private carId: number) {}
+  private subscriptions: SubsType = {
+    [CarTrackEvent.SELECT_CAR]: [],
+    [CarTrackEvent.REMOVE_CAR]: [],
+  };
+
+  constructor(public car: Car, parentNode: HTMLElement) {
+    super(parentNode);
+  }
+
+  public addEventListener<T extends CarTrackEvent>(event: T, fn: CarTracklEventFunction[T]) {
+    this.subscriptions[event].push(fn);
+  }
+
+  /*eslint-disable */
+    private notify<T extends CarTrackEvent>(event: T, ...args: Parameters<CarTracklEventFunction[T]>) {
+      this.subscriptions[event].forEach((fn) => {
+        // @ts-ignore
+        fn(...args);
+      });
+    }
+    /* eslint-enable */
+
+  public render() {
+    this.garageItem = document.createElement('div');
+    this.garageItem.classList.add('garage__item');
+    this.parentNode.appendChild(this.garageItem);
+
+    const itemControlPanel = document.createElement('div');
+    itemControlPanel.classList.add('garage__item-panel');
+    this.garageItem.appendChild(itemControlPanel);
+
+    this.selectButton = document.createElement('button');
+    this.selectButton.classList.add('garage__item-select');
+    this.selectButton.textContent = 'select';
+    itemControlPanel.appendChild(this.selectButton);
+
+    this.removeButton = document.createElement('button');
+    this.removeButton.classList.add('garage__item-remove');
+    this.removeButton.textContent = 'remove';
+    itemControlPanel.appendChild(this.removeButton);
+
+    const itemName = document.createElement('p');
+    itemName.classList.add('garage__item-name');
+    itemName.textContent = this.car.name;
+    itemControlPanel.appendChild(itemName);
+
+    this.renderCarTrack(this.garageItem);
+    this.attachEvents();
+  }
 
   public startEngine(): Promise<EngineData> {
+    this.isDriving = true;
     return new Promise((resolve, reject) => {
-      fetch(`http://127.0.0.1:3000/engine?id=${this.carId}&status=started`, {
+      fetch(`http://127.0.0.1:3000/engine?id=${this.car.id}&status=started`, {
         method: 'PATCH',
       })
         .then((response) => response.json())
@@ -36,7 +106,20 @@ export default class CarTrack {
     });
   }
 
-  public startDriving(engineData: EngineData) {
+  public start(): Promise<DrivingCar> {
+    const startTimer = new Date().getTime();
+    return new Promise((resolve, reject) => {
+      this.startEngine()
+        .then((data) => this.startDriving(data))
+        .then(() => {
+          const stopTimer = new Date().getTime();
+          resolve({ theCar: this.car, drivingTime: (stopTimer - startTimer) / 1000 });
+        })
+        .catch(() => reject());
+    });
+  }
+
+  public startDriving(engineData: EngineData): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (!this.carElem) throw new Error();
       if (!this.trackMark) throw new Error();
@@ -47,7 +130,7 @@ export default class CarTrack {
       this.carElem.style.transition = `padding-left ${speed}s linear`;
       this.carElem.style.paddingLeft = 'calc(100% - 105px)';
 
-      fetch(`http://127.0.0.1:3000/engine?id=${this.carId}&status=drive`, {
+      fetch(`http://127.0.0.1:3000/engine?id=${this.car.id}&status=drive`, {
         method: 'PATCH',
       })
         .then((response) => response.json())
@@ -59,7 +142,7 @@ export default class CarTrack {
     });
   }
 
-  private stopAnimation(options: AnimationOptions) {
+  public stopAnimation(options: AnimationOptions) {
     if (!this.carElem) throw new Error();
 
     let paddingLeft = '0';
@@ -76,9 +159,8 @@ export default class CarTrack {
 
   public stopEngine() {
     this.isDriving = false;
-    console.log(this.isStopped);
     return new Promise((resolve, reject) => {
-      fetch(`http://127.0.0.1:3000/engine?id=${this.carId}&status=stopped`, {
+      fetch(`http://127.0.0.1:3000/engine?id=${this.car.id}&status=stopped`, {
         method: 'PATCH',
       })
         .then((response) => response.json())
@@ -89,7 +171,7 @@ export default class CarTrack {
     });
   }
 
-  public renderCarTrack(parentCar: HTMLElement, carElem: Car) {
+  public renderCarTrack(parentCar: HTMLElement) {
     const racePanel = document.createElement('div');
     racePanel.classList.add('garage__item-race');
     parentCar.appendChild(racePanel);
@@ -110,18 +192,16 @@ export default class CarTrack {
     racePanel.appendChild(track);
 
     this.carElem = track.querySelector('svg')!;
-    this.carElem.setAttribute('fill', carElem.color);
+    this.carElem.setAttribute('fill', this.car.color);
 
     this.trackMark = document.createElement('div');
     this.trackMark.classList.add('garage__item-finish');
     track.appendChild(this.trackMark);
-    this.attachEvents();
   }
 
   private attachEvents() {
     this.startButton?.addEventListener('click', () => {
       if (!this.isDriving) {
-        this.isDriving = true;
         this.startEngine().then((data) => this.startDriving(data));
       }
     });
@@ -131,6 +211,14 @@ export default class CarTrack {
         this.stopEngine();
         this.stopAnimation(AnimationOptions.reset);
       }
+    });
+
+    this.removeButton?.addEventListener('click', () => {
+      this.notify(CarTrackEvent.REMOVE_CAR, this.car);
+    });
+
+    this.selectButton?.addEventListener('click', () => {
+      this.notify(CarTrackEvent.SELECT_CAR, this.car);
     });
   }
 }
