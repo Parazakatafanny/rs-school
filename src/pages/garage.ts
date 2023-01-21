@@ -2,6 +2,7 @@ import NestedComponent from '../components/nested-component';
 import ControlPanel, { ControlPanelEvent } from '../components/garage/control-panel';
 import { Car } from '../interfaces/api';
 import CarTrack, { AnimationOptions, CarTrackEvent, DrivingCar } from '../components/garage/car';
+import { CAR_BRAND, CAR_MODEL } from '../common/consts';
 
 export default class GaragePage extends NestedComponent {
   private controlPanel?: ControlPanel;
@@ -183,6 +184,21 @@ export default class GaragePage extends NestedComponent {
           this.updateCar(updatedCar);
         }
       });
+    });
+
+    this.controlPanel.addEventListener(ControlPanelEvent.GENERATE_NEW_CARS, (cars_num: number) => {
+      this.renderCarsNumber();
+
+      for (let i = 0; i < cars_num; i += 1) {
+        const brand = CAR_BRAND[Math.floor(Math.random() * CAR_BRAND.length)];
+        const model = CAR_MODEL[Math.floor(Math.random() * CAR_MODEL.length)];
+        const color = Math.floor(Math.random() * 16777215).toString(16);
+
+        this.createNewCar({
+          name: `${brand} ${model}`,
+          color: `#${color}`,
+        });
+      }
     });
   }
 }

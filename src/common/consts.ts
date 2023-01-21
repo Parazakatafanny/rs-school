@@ -1,0 +1,15 @@
+export const CAR_BRAND = ['Tesla', 'BMW', 'Ford', 'Audi', 'Honda', 'Kia', 'Lada', 'Mazda', 'Chevrolet', 'Mitsubishi'];
+
+export const CAR_MODEL = [
+  'ASX Cross',
+  'Eclipse Cross',
+  'Outlander Cross',
+  'Polo',
+  'Jetta',
+  'Vesta Cross',
+  'CX-30 Cross',
+  'Nexia',
+  'Cobalt',
+  'Spark',
+  'Tahoe',
+];

@@ -9,11 +9,13 @@ export enum ControlPanelEvent {
   UPDATE_CAR,
 }
 
+const GENERATE_CARS_NUM = 100;
+
 type EmptyFn = () => void;
 
 type ControlPanelEventFunction = {
   [ControlPanelEvent.RESET]: EmptyFn;
-  [ControlPanelEvent.GENERATE_NEW_CARS]: EmptyFn;
+  [ControlPanelEvent.GENERATE_NEW_CARS]: (cars_num: number) => void;
   [ControlPanelEvent.CREATE]: (name: string, color: string) => void;
   [ControlPanelEvent.START_RACE]: EmptyFn;
   [ControlPanelEvent.UPDATE_CAR]: (car: Car) => void;
@@ -185,6 +187,10 @@ export default class ControlPanel extends NestedComponent {
         name: this.inputUpdate.value,
         color: this.inputUpdateColor.value,
       });
+    });
+
+    this.generateCarsButton?.addEventListener('click', () => {
+      this.notify(ControlPanelEvent.GENERATE_NEW_CARS, GENERATE_CARS_NUM);
     });
   }
 }
