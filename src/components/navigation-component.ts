@@ -1,5 +1,6 @@
 import GaragePage from '../pages/garage';
 import LogoSVG from '@/assets/rs-school-js.svg';
+import WinnersPage from '../pages/winners';
 
 export default class NavigationComponent {
   public garageLink?: HTMLElement;
@@ -7,6 +8,8 @@ export default class NavigationComponent {
   public winnersLink?: HTMLElement;
 
   public viewportContainer?: HTMLDivElement;
+
+  private selectedPage: 'garage' | 'winners' = 'garage';
 
   public init() {
     this.render();
@@ -63,12 +66,14 @@ export default class NavigationComponent {
   }
 
   private attachListeners() {
-    // this.garageLink?.addEventListener('click', () => {});
-    // this.winnersLink?.addEventListener('click', () => {});
-  }
-
-  private get selectedPage() {
-    return 'garage';
+    this.garageLink?.addEventListener('click', () => {
+      this.selectedPage = 'garage';
+      this.renderPage();
+    });
+    this.winnersLink?.addEventListener('click', () => {
+      this.selectedPage = 'winners';
+      this.renderPage();
+    });
   }
 
   private renderPage() {
@@ -79,10 +84,10 @@ export default class NavigationComponent {
 
     if (this.selectedPage === 'garage') {
       page = new GaragePage(this.viewportContainer);
-    } else {
-      throw new Error();
+      page.render();
+    } else if (this.selectedPage === 'winners') {
+      page = new WinnersPage(this.viewportContainer);
+      page.render();
     }
-
-    page.render();
   }
 }

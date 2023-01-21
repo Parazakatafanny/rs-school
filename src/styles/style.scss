@@ -1,5 +1,10 @@
 @import './reset.scss';
 @import './garage.scss';
+@import './winners.scss';
+
+body {
+  padding: 0 20px;
+}
 
 .header {
   display: flex;
