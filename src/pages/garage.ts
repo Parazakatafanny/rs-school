@@ -1,8 +1,8 @@
 import NestedComponent from '../components/nested-component';
 import ControlPanel, { ControlPanelEvent } from '../components/garage/control-panel';
-import { Car } from '../interfaces/api';
+import { Car, Winner } from '../interfaces/api';
 import CarTrack, { AnimationOptions, CarTrackEvent, DrivingCar } from '../components/garage/car';
-import { CAR_BRAND, CAR_MODEL } from '../common/consts';
+import { API_URL, CARS_ON_PAGE, CAR_BRAND, CAR_MODEL } from '../common/consts';
 
 export default class GaragePage extends NestedComponent {
   private controlPanel?: ControlPanel;
@@ -111,7 +111,7 @@ export default class GaragePage extends NestedComponent {
 
   private getCars() {
     return new Promise<void>((resolve, reject) => {
-      fetch('http://127.0.0.1:3000/garage?_page=1&_limit=7')
+      fetch(`http://127.0.0.1:3000/garage?_page=1&_limit=${CARS_ON_PAGE}`)
         .then((response) => {
           this.totalCars = +(response.headers.get('X-Total-Count') || '0');
           return response.json();
@@ -127,7 +127,7 @@ export default class GaragePage extends NestedComponent {
   }
 
   private createNewCar(data: { name: string; color: string }) {
-    fetch('http://localhost:3000/garage', {
+    fetch('${API_URL}/garage', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -139,15 +139,66 @@ export default class GaragePage extends NestedComponent {
   }
 
   private deleteCar(carId: number) {
-    fetch(`http://localhost:3000/garage/${carId}`, {
+    fetch(`${API_URL}/garage/${carId}`, {
+      method: 'DELETE',
+    });
+
+    fetch(`${API_URL}/winners/${carId}`, {
       method: 'DELETE',
     });
   }
 
   private updateCar(car: Car) {
-    fetch(`http://localhost:3000/garage/${car.id}`, {
+    fetch(`${API_URL}/garage/${car.id}`, {
       method: 'PUT',
       body: JSON.stringify(car),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  private createOrUpdateWinner(winner: Winner) {
+    fetch(`${API_URL}/winners`, {
+      method: 'POST',
+      body: JSON.stringify(winner),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then((response) => {
+      if (response.status !== 500) return;
+
+      this.getWinner(winner.id).then(({ id, time, wins }) => {
+        const newBestTime = time < winner.time ? time : winner.time;
+        const newWinner = {
+          id,
+          wins: wins + 1,
+          time: newBestTime,
+        };
+        this.updateWinner(newWinner);
+      });
+    });
+  }
+
+  private getWinner(winnerId: number) {
+    return new Promise<Winner>((resolve, reject) => {
+      fetch(`${API_URL}/winners/${winnerId}`, {
+        method: 'GET',
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          resolve(data);
+        })
+        .catch(() => {
+          reject();
+        });
+    });
+  }
+
+  private updateWinner(winner: Winner) {
+    fetch(`${API_URL}/winners/${winner.id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ time: winner.time, wins: winner.wins }),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -159,6 +210,11 @@ export default class GaragePage extends NestedComponent {
 
     this.controlPanel.addEventListener(ControlPanelEvent.START_RACE, () => {
       this.startRace().then(({ theCar, drivingTime }) => {
+        this.createOrUpdateWinner({
+          id: theCar.id,
+          time: drivingTime,
+          wins: 1,
+        });
         const winner = document.createElement('div');
         winner.classList.add('winner');
         winner.textContent = `Winner ${theCar.name}(${drivingTime} sec)`;
