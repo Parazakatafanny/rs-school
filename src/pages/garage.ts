@@ -111,7 +111,7 @@ export default class GaragePage extends NestedComponent {
 
   private getCars() {
     return new Promise<void>((resolve, reject) => {
-      fetch(`http://127.0.0.1:3000/garage?_page=1&_limit=${CARS_ON_PAGE}`)
+      fetch(`${API_URL}/garage?_page=1&_limit=${CARS_ON_PAGE}`)
         .then((response) => {
           this.totalCars = +(response.headers.get('X-Total-Count') || '0');
           return response.json();
@@ -127,7 +127,7 @@ export default class GaragePage extends NestedComponent {
   }
 
   private createNewCar(data: { name: string; color: string }) {
-    fetch('${API_URL}/garage', {
+    fetch(`${API_URL}/garage`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

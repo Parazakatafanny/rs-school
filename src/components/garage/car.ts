@@ -1,4 +1,5 @@
 import CartSVG from '@/assets/car.svg';
+import { API_URL } from '../../common/consts';
 import { Car } from '../../interfaces/api';
 import NestedComponent from '../nested-component';
 
@@ -110,7 +111,7 @@ export default class CarTrack extends NestedComponent {
   public startEngine(): Promise<EngineData> {
     this.isDriving = true;
     return new Promise((resolve, reject) => {
-      fetch(`http://127.0.0.1:3000/engine?id=${this.car.id}&status=started`, {
+      fetch(`${API_URL}/engine?id=${this.car.id}&status=started`, {
         method: 'PATCH',
       })
         .then((response) => response.json())
@@ -145,7 +146,7 @@ export default class CarTrack extends NestedComponent {
       this.carElem.style.transition = `padding-left ${speed}s linear`;
       this.carElem.style.paddingLeft = 'calc(100% - 105px)';
 
-      fetch(`http://127.0.0.1:3000/engine?id=${this.car.id}&status=drive`, {
+      fetch(`${API_URL}/engine?id=${this.car.id}&status=drive`, {
         method: 'PATCH',
       })
         .then((response) => response.json())
@@ -175,7 +176,7 @@ export default class CarTrack extends NestedComponent {
   public stopEngine() {
     this.isDriving = false;
     return new Promise((resolve, reject) => {
-      fetch(`http://127.0.0.1:3000/engine?id=${this.car.id}&status=stopped`, {
+      fetch(`${API_URL}/engine?id=${this.car.id}&status=stopped`, {
         method: 'PATCH',
       })
         .then((response) => response.json())

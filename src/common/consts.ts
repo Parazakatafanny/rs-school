@@ -13,3 +13,7 @@ export const CAR_MODEL = [
   'Spark',
   'Tahoe',
 ];
+
+export const CARS_ON_PAGE = 7;
+
+export const API_URL = 'http://localhost:3000';

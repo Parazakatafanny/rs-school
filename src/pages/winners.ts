@@ -1,6 +1,7 @@
 import { WinnerComponent, WinnerData } from '../components/winners/winner';
 import NestedComponent from '../components/nested-component';
 import { Car, Winner } from '../interfaces/api';
+import { API_URL } from '../common/consts';
 
 export default class WinnersPage extends NestedComponent {
   private totalWinners = 0;
@@ -83,7 +84,7 @@ export default class WinnersPage extends NestedComponent {
 
   private getWinners() {
     return new Promise<void>((resolve, reject) => {
-      fetch('http://127.0.0.1:3000/winners?_page=1&_limit=7&_sort=id&_order=ASC')
+      fetch(`${API_URL}/winners?_page=1&_limit=7&_sort=id&_order=ASC`)
         .then((response) => {
           this.totalWinners = +(response.headers.get('X-Total-Count') || '0');
           return response.json();
@@ -100,7 +101,7 @@ export default class WinnersPage extends NestedComponent {
 
   private getCar(carId: number) {
     return new Promise<Car>((resolve, reject) => {
-      fetch(`http://127.0.0.1:3000/garage/${carId}`)
+      fetch(`${API_URL}/garage/${carId}`)
         .then((response) => response.json())
         .then((data) => {
           resolve(data);
