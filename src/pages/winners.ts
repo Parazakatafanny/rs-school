@@ -1,50 +1,106 @@
 import { WinnerComponent, WinnerData } from '../components/winners/winner';
 import NestedComponent from '../components/nested-component';
 import { Car, Winner } from '../interfaces/api';
-import { API_URL } from '../common/consts';
+import { API_URL, WINNERS_ON_PAGE } from '../common/consts';
+import constructURL from '../common/utils';
+
+enum SortField {
+  byWins = 'wins',
+  byTime = 'time',
+}
+
+enum SortOrder {
+  ASC = 'ASC',
+  DESC = 'DESC',
+}
 
 export default class WinnersPage extends NestedComponent {
   private totalWinners = 0;
 
   private tableWinners?: HTMLElement;
 
+  private winnerNames?: HTMLElement;
+
+  private winnerWins?: HTMLElement;
+
   private winners?: Winner[];
 
-  public render() {
-    const allWinners = document.createElement('div');
-    allWinners.classList.add('all-winners');
-    this.parentNode.appendChild(allWinners);
+  private currentPage: number;
 
+  private nextPage?: HTMLButtonElement;
+
+  private prevPage?: HTMLButtonElement;
+
+  private sort: { field: SortField; order: SortOrder } = {
+    field: SortField.byTime,
+    order: SortOrder.ASC,
+  };
+
+  constructor(parentNode: HTMLElement) {
+    super(parentNode);
+    this.currentPage = +(localStorage.getItem('currentWinnersPage') || 1);
+  }
+
+  public render() {
+    this.parentNode.innerHTML = '';
     this.getWinners().then(() => {
       const numberWinners = document.createElement('div');
       numberWinners.classList.add('number-winners');
       numberWinners.textContent = `Winners (${this.totalWinners})`;
-      allWinners.appendChild(numberWinners);
+      this.parentNode.appendChild(numberWinners);
 
-      const currentPage = document.createElement('h1');
-      currentPage.textContent = 'Page #1';
-      currentPage.classList.add('curretn-page');
-      allWinners.appendChild(currentPage);
+      this.renderPageNumber();
 
       this.tableWinners = document.createElement('div');
       this.tableWinners.classList.add('table-winners');
-      allWinners.appendChild(this.tableWinners);
-      this.createSortPanel();
+      this.parentNode.appendChild(this.tableWinners);
 
-      this.winners?.forEach((winner, idx) => {
-        this.getCar(winner.id).then((data) => {
-          if (!this.tableWinners) throw new Error();
+      this.renderWinners();
 
-          const winnerData: WinnerData = {
-            idx: idx + 1,
-            color: data.color,
-            name: data.name,
-            wins: winner.wins,
-            bestTime: winner.time,
-          };
-          const winnerComponent = new WinnerComponent(this.tableWinners, winnerData);
-          winnerComponent.render();
-        });
+      const pagePanel = document.createElement('div');
+      pagePanel.classList.add('page-panel');
+      this.parentNode.appendChild(pagePanel);
+
+      this.prevPage = document.createElement('button');
+      this.prevPage.classList.add('prev-page');
+      this.prevPage.innerHTML = 'prev';
+      pagePanel.appendChild(this.prevPage);
+
+      this.nextPage = document.createElement('button');
+      this.nextPage.classList.add('next-page');
+      this.nextPage.innerHTML = 'next';
+      pagePanel.appendChild(this.nextPage);
+      this.attachEvents();
+    });
+  }
+
+  private renderPageNumber() {
+    const currentPage = document.createElement('h1');
+    currentPage.textContent = `Page #${this.currentPage}`;
+    currentPage.classList.add('curretn-page');
+    this.parentNode.appendChild(currentPage);
+  }
+
+  private renderWinners() {
+    if (!this.tableWinners) throw new Error();
+    this.tableWinners.innerHTML = '';
+
+    this.createSortPanel();
+
+    this.winners?.forEach((winner, idx) => {
+      this.getCar(winner.id).then((data) => {
+        if (!this.tableWinners) throw new Error();
+
+        const offset = WINNERS_ON_PAGE * (this.currentPage - 1);
+        const winnerData: WinnerData = {
+          idx: offset + idx + 1,
+          color: data.color,
+          name: data.name,
+          wins: winner.wins,
+          bestTime: winner.time,
+        };
+        const winnerComponent = new WinnerComponent(this.tableWinners, winnerData);
+        winnerComponent.render();
       });
     });
   }
@@ -56,25 +112,25 @@ export default class WinnersPage extends NestedComponent {
     sortPanel.classList.add('sort-panel');
     this.tableWinners.appendChild(sortPanel);
 
-    const number = document.createElement('div');
-    number.classList.add('number');
-    number.textContent = 'Number';
-    sortPanel.appendChild(number);
+    const winnerNumbers = document.createElement('div');
+    winnerNumbers.classList.add('number');
+    winnerNumbers.textContent = 'Number';
+    sortPanel.appendChild(winnerNumbers);
 
     const car = document.createElement('div');
     car.classList.add('car');
     car.textContent = 'Car';
     sortPanel.appendChild(car);
 
-    const name = document.createElement('div');
-    name.classList.add('name');
-    name.textContent = 'Name';
-    sortPanel.appendChild(name);
+    this.winnerNames = document.createElement('div');
+    this.winnerNames.classList.add('name');
+    this.winnerNames.textContent = 'Name';
+    sortPanel.appendChild(this.winnerNames);
 
-    const wins = document.createElement('div');
-    wins.classList.add('wins');
-    wins.textContent = 'Wins';
-    sortPanel.appendChild(wins);
+    this.winnerWins = document.createElement('div');
+    this.winnerWins.classList.add('wins');
+    this.winnerWins.textContent = 'Wins';
+    sortPanel.appendChild(this.winnerWins);
 
     const bestTime = document.createElement('div');
     bestTime.classList.add('best-time');
@@ -84,7 +140,16 @@ export default class WinnersPage extends NestedComponent {
 
   private getWinners() {
     return new Promise<void>((resolve, reject) => {
-      fetch(`${API_URL}/winners?_page=1&_limit=7&_sort=id&_order=ASC`)
+      const url = constructURL(`${API_URL}/winners`, {
+        _page: this.currentPage,
+        _limit: WINNERS_ON_PAGE,
+        _sort: this.sort.field,
+        _order: this.sort.order,
+      });
+
+      console.log();
+
+      fetch(url)
         .then((response) => {
           this.totalWinners = +(response.headers.get('X-Total-Count') || '0');
           return response.json();
@@ -109,6 +174,44 @@ export default class WinnersPage extends NestedComponent {
         .catch(() => {
           reject();
         });
+    });
+  }
+
+  private get maxPages() {
+    return Math.ceil(this.totalWinners / WINNERS_ON_PAGE);
+  }
+
+  private attachEvents() {
+    if (!this.nextPage) throw new Error();
+    if (!this.prevPage) throw new Error();
+    if (!this.winnerWins) throw new Error();
+
+    this.winnerWins.addEventListener('click', () => {
+      this.sort = {
+        field: SortField.byWins,
+        order: this.sort.order === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC,
+      };
+
+      this.render();
+    });
+
+    this.nextPage.addEventListener('click', () => {
+      if (this.currentPage === this.maxPages) {
+        return;
+      }
+      this.currentPage += 1;
+      localStorage.setItem('currentWinnersPage', `${this.currentPage}`);
+      this.render();
+    });
+
+    this.prevPage.addEventListener('click', () => {
+      const firstPage = 1;
+      if (this.currentPage === firstPage) {
+        return;
+      }
+      this.currentPage -= 1;
+      localStorage.setItem('currentWinnersPage', `${this.currentPage}`);
+      this.render();
     });
   }
 }

@@ -20,22 +20,26 @@
   background-color: rgb(245, 242, 242);
 }
 
-.number {
+.number,
+.wins {
+  height: 100%;
   width: 15%;
+  align-items: center;
+  text-align: center;
+  user-select: none;
 }
 
-.car {
+.car,
+.best-time  {
+  height: 100%;
   width: 20%;
+  text-align: center;
+  user-select: none;
 }
 
 .name {
+  height: 100%;
   width: 30%;
-}
-
-.wins {
-  width: 15%;
-}
-
-.best-time {
-  width: 20%;
+  text-align: center;
+  user-select: none;
 }

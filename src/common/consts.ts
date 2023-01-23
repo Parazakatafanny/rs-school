@@ -17,3 +17,5 @@ export const CAR_MODEL = [
 export const CARS_ON_PAGE = 7;
 
 export const API_URL = 'http://localhost:3000';
+
+export const WINNERS_ON_PAGE = 10;
