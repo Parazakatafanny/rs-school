@@ -1,6 +1,7 @@
 import GaragePage from '../pages/garage';
 import LogoSVG from '@/assets/rs-school-js.svg';
 import WinnersPage from '../pages/winners';
+import HiddenComponent from '../interfaces/components';
 
 export default class NavigationComponent {
   public garageLink?: HTMLElement;
@@ -11,8 +12,18 @@ export default class NavigationComponent {
 
   private selectedPage: 'garage' | 'winners' = 'garage';
 
+  private pageComponents?: { [name: string]: HiddenComponent };
+
   public init() {
     this.render();
+
+    if (!this.viewportContainer) throw new Error();
+
+    this.pageComponents = {
+      garage: new GaragePage(this.viewportContainer),
+      winners: new WinnersPage(this.viewportContainer),
+    };
+
     this.attachListeners();
     this.renderPage();
   }
@@ -78,16 +89,14 @@ export default class NavigationComponent {
 
   private renderPage() {
     if (!this.viewportContainer) throw new Error();
-    this.viewportContainer.innerHTML = '';
+    if (!this.pageComponents) throw new Error();
 
-    let page;
-
-    if (this.selectedPage === 'garage') {
-      page = new GaragePage(this.viewportContainer);
-      page.render();
-    } else if (this.selectedPage === 'winners') {
-      page = new WinnersPage(this.viewportContainer);
-      page.render();
-    }
+    Object.entries(this.pageComponents).forEach(([key, value]) => {
+      if (key === this.selectedPage) {
+        value.show();
+      } else {
+        value.hide();
+      }
+    });
   }
 }

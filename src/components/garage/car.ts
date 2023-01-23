@@ -41,6 +41,8 @@ export default class CarTrack extends NestedComponent {
 
   private carName?: HTMLElement;
 
+  private abortController: AbortController;
+
   public isDriving = false;
 
   public isStopped = false;
@@ -52,6 +54,7 @@ export default class CarTrack extends NestedComponent {
 
   constructor(public car: Car, parentNode: HTMLElement) {
     super(parentNode);
+    this.abortController = new AbortController();
   }
 
   public addEventListener<T extends CarTrackEvent>(event: T, fn: CarTracklEventFunction[T]) {
@@ -113,6 +116,7 @@ export default class CarTrack extends NestedComponent {
     return new Promise((resolve, reject) => {
       fetch(`${API_URL}/engine?id=${this.car.id}&status=started`, {
         method: 'PATCH',
+        signal: this.abortController.signal,
       })
         .then((response) => response.json())
         .then((data) => {
@@ -135,6 +139,19 @@ export default class CarTrack extends NestedComponent {
     });
   }
 
+  public stop() {
+    if (!this.isDriving) {
+      return;
+    }
+
+    this.abortController.abort();
+
+    this.stopEngine();
+    this.stopAnimation(AnimationOptions.reset);
+
+    this.abortController = new AbortController();
+  }
+
   public startDriving(engineData: EngineData): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (!this.carElem) throw new Error();
@@ -148,6 +165,7 @@ export default class CarTrack extends NestedComponent {
 
       fetch(`${API_URL}/engine?id=${this.car.id}&status=drive`, {
         method: 'PATCH',
+        signal: this.abortController.signal,
       })
         .then((response) => response.json())
         .then((data) => resolve(data))

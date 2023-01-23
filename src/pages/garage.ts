@@ -1,7 +1,7 @@
 import NestedComponent from '../components/nested-component';
 import ControlPanel, { ControlPanelEvent } from '../components/garage/control-panel';
 import { Car, Winner } from '../interfaces/api';
-import CarTrack, { AnimationOptions, CarTrackEvent, DrivingCar } from '../components/garage/car';
+import CarTrack, { CarTrackEvent, DrivingCar } from '../components/garage/car';
 import { API_URL, CARS_ON_PAGE, CAR_BRAND, CAR_MODEL } from '../common/consts';
 
 export default class GaragePage extends NestedComponent {
@@ -25,8 +25,20 @@ export default class GaragePage extends NestedComponent {
 
   constructor(parentNode: HTMLElement) {
     super(parentNode);
-    this.controlPanel = new ControlPanel(parentNode);
     this.currentPage = +(localStorage.getItem('currentGaragePage') || 1);
+  }
+
+  public hide() {
+    if (!this.garage) return;
+    this.garage.style.display = 'none';
+  }
+
+  public show() {
+    if (!this.garage) {
+      this.render();
+    } else {
+      this.garage.style.display = 'flex';
+    }
   }
 
   public startRace(): Promise<DrivingCar> {
@@ -45,10 +57,7 @@ export default class GaragePage extends NestedComponent {
 
   public stopRace() {
     this.cartTracks.forEach((carTrack) => {
-      if (carTrack.isDriving && carTrack.isStopped) {
-        carTrack.stopEngine();
-        carTrack.stopAnimation(AnimationOptions.reset);
-      }
+      carTrack.stop();
     });
   }
 
@@ -63,13 +72,13 @@ export default class GaragePage extends NestedComponent {
   }
 
   public render() {
-    if (!this.controlPanel) throw new Error();
-    this.controlPanel.render();
-
     this.garage = document.createElement('div');
     this.garage.classList.add('garage');
     this.parentNode.appendChild(this.garage);
+
     this.renderGarage();
+    this.controlPanel = new ControlPanel(this.garage);
+    this.controlPanel.render();
   }
 
   private renderGarage() {

@@ -19,7 +19,7 @@ export default class WinnersPage extends NestedComponent {
 
   private tableWinners?: HTMLElement;
 
-  private winnerNames?: HTMLElement;
+  private bestTimes?: HTMLElement;
 
   private winnerWins?: HTMLElement;
 
@@ -31,6 +31,8 @@ export default class WinnersPage extends NestedComponent {
 
   private prevPage?: HTMLButtonElement;
 
+  private winnersHtml?: HTMLElement;
+
   private sort: { field: SortField; order: SortOrder } = {
     field: SortField.byTime,
     order: SortOrder.ASC,
@@ -41,25 +43,39 @@ export default class WinnersPage extends NestedComponent {
     this.currentPage = +(localStorage.getItem('currentWinnersPage') || 1);
   }
 
+  public hide() {
+    if (!this.winnersHtml) return;
+    this.winnersHtml.style.display = 'none';
+  }
+
+  public show() {
+    this.render();
+  }
+
   public render() {
-    this.parentNode.innerHTML = '';
+    this.winnersHtml?.remove();
+    this.winnersHtml = document.createElement('div');
+    this.parentNode.append(this.winnersHtml);
+
     this.getWinners().then(() => {
+      if (!this.winnersHtml) throw new Error();
+
       const numberWinners = document.createElement('div');
       numberWinners.classList.add('number-winners');
       numberWinners.textContent = `Winners (${this.totalWinners})`;
-      this.parentNode.appendChild(numberWinners);
+      this.winnersHtml.appendChild(numberWinners);
 
       this.renderPageNumber();
 
       this.tableWinners = document.createElement('div');
       this.tableWinners.classList.add('table-winners');
-      this.parentNode.appendChild(this.tableWinners);
+      this.winnersHtml.appendChild(this.tableWinners);
 
       this.renderWinners();
 
       const pagePanel = document.createElement('div');
       pagePanel.classList.add('page-panel');
-      this.parentNode.appendChild(pagePanel);
+      this.winnersHtml.appendChild(pagePanel);
 
       this.prevPage = document.createElement('button');
       this.prevPage.classList.add('prev-page');
@@ -78,7 +94,7 @@ export default class WinnersPage extends NestedComponent {
     const currentPage = document.createElement('h1');
     currentPage.textContent = `Page #${this.currentPage}`;
     currentPage.classList.add('curretn-page');
-    this.parentNode.appendChild(currentPage);
+    this.winnersHtml?.appendChild(currentPage);
   }
 
   private renderWinners() {
@@ -122,20 +138,20 @@ export default class WinnersPage extends NestedComponent {
     car.textContent = 'Car';
     sortPanel.appendChild(car);
 
-    this.winnerNames = document.createElement('div');
-    this.winnerNames.classList.add('name');
-    this.winnerNames.textContent = 'Name';
-    sortPanel.appendChild(this.winnerNames);
+    const winnerNames = document.createElement('div');
+    winnerNames.classList.add('name');
+    winnerNames.textContent = 'Name';
+    sortPanel.appendChild(winnerNames);
 
     this.winnerWins = document.createElement('div');
     this.winnerWins.classList.add('wins');
     this.winnerWins.textContent = 'Wins';
     sortPanel.appendChild(this.winnerWins);
 
-    const bestTime = document.createElement('div');
-    bestTime.classList.add('best-time');
-    bestTime.textContent = 'Best time (seconds)';
-    sortPanel.appendChild(bestTime);
+    this.bestTimes = document.createElement('div');
+    this.bestTimes.classList.add('best-time');
+    this.bestTimes.textContent = 'Best time (seconds)';
+    sortPanel.appendChild(this.bestTimes);
   }
 
   private getWinners() {
@@ -185,10 +201,20 @@ export default class WinnersPage extends NestedComponent {
     if (!this.nextPage) throw new Error();
     if (!this.prevPage) throw new Error();
     if (!this.winnerWins) throw new Error();
+    if (!this.bestTimes) throw new Error();
 
     this.winnerWins.addEventListener('click', () => {
       this.sort = {
         field: SortField.byWins,
+        order: this.sort.order === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC,
+      };
+
+      this.render();
+    });
+
+    this.bestTimes.addEventListener('click', () => {
+      this.sort = {
+        field: SortField.byTime,
         order: this.sort.order === SortOrder.ASC ? SortOrder.DESC : SortOrder.ASC,
       };
 
