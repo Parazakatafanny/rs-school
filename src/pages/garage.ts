@@ -9,6 +9,8 @@ export default class GaragePage extends NestedComponent {
 
   private garage?: HTMLDivElement;
 
+  private garageInner?: HTMLDivElement;
+
   private cars: Car[] = [];
 
   private totalCars = 0;
@@ -37,7 +39,7 @@ export default class GaragePage extends NestedComponent {
     if (!this.garage) {
       this.render();
     } else {
-      this.garage.style.display = 'flex';
+      this.garage.style.display = 'block';
     }
   }
 
@@ -73,44 +75,51 @@ export default class GaragePage extends NestedComponent {
 
   public render() {
     this.garage = document.createElement('div');
-    this.garage.classList.add('garage');
+    this.garage.classList.add('garage-page');
     this.parentNode.appendChild(this.garage);
 
-    this.renderGarage();
     this.controlPanel = new ControlPanel(this.garage);
     this.controlPanel.render();
+
+    this.garageInner = document.createElement('div');
+    this.garageInner.classList.add('garage');
+    this.garage?.appendChild(this.garageInner);
+
+    this.renderGarage();
+    this.createPagePanel();
+    this.attachEvents();
   }
 
   private renderGarage() {
-    if (!this.garage) throw new Error();
-
-    this.garage.innerHTML = '';
     this.carsNumberHtml = undefined;
 
     this.getCars(this.currentPage).then(() => {
+      if (!this.garageInner) throw new Error();
+
+      this.garageInner.innerHTML = '';
+
       this.renderCarsNumber();
       this.renderCurrentPage();
+
       this.renderCars();
-      this.createPagePanel();
-      this.attachEvents();
     });
   }
 
   private renderCurrentPage() {
-    if (!this.garage) throw new Error();
+    if (!this.garageInner) throw new Error();
 
     const currentPage = document.createElement('h1');
     currentPage.textContent = `Page #${this.currentPage}`;
     currentPage.classList.add('curretn-page');
-    this.garage.appendChild(currentPage);
+    this.garageInner.appendChild(currentPage);
   }
 
   private renderCarsNumber() {
-    if (!this.garage) throw new Error();
+    if (!this.garageInner) throw new Error();
     if (!this.carsNumberHtml) {
       this.carsNumberHtml = document.createElement('h1');
       this.carsNumberHtml.classList.add('numbers-of-cars');
-      this.garage.appendChild(this.carsNumberHtml);
+      this.garageInner.appendChild(this.carsNumberHtml);
     }
 
     this.carsNumberHtml.textContent = `Garage(${this.totalCars})`;
@@ -118,6 +127,10 @@ export default class GaragePage extends NestedComponent {
 
   private createPagePanel() {
     if (!this.garage) throw new Error();
+
+    if (this.nextPage || this.prevPage) {
+      return;
+    }
 
     const pagePanel = document.createElement('div');
     pagePanel.classList.add('page-panel');
@@ -141,9 +154,9 @@ export default class GaragePage extends NestedComponent {
   }
 
   private renderCar(car: Car) {
-    if (!this.garage) throw new Error();
+    if (!this.garageInner) throw new Error();
 
-    const carTrack = new CarTrack(car, this.garage);
+    const carTrack = new CarTrack(car, this.garageInner);
     carTrack.render();
     this.cartTracks.push(carTrack);
 
