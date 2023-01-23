@@ -17,9 +17,16 @@ export default class GaragePage extends NestedComponent {
 
   private carsNumberHtml?: HTMLDivElement;
 
+  private nextPage?: HTMLButtonElement;
+
+  private prevPage?: HTMLButtonElement;
+
+  private currentPage: number;
+
   constructor(parentNode: HTMLElement) {
     super(parentNode);
     this.controlPanel = new ControlPanel(parentNode);
+    this.currentPage = +(localStorage.getItem('currentGaragePage') || 1);
   }
 
   public startRace(): Promise<DrivingCar> {
@@ -49,7 +56,7 @@ export default class GaragePage extends NestedComponent {
     this.totalCars += 1;
     this.renderCarsNumber();
 
-    if (this.cars.length < 99) {
+    if (this.cars.length < 7) {
       this.cars.push(car);
       this.renderCar(car);
     }
@@ -57,36 +64,68 @@ export default class GaragePage extends NestedComponent {
 
   public render() {
     if (!this.controlPanel) throw new Error();
-
     this.controlPanel.render();
 
-    this.getCars().then(() => {
-      this.renderCarsNumber();
-      const currentPage = document.createElement('h1');
-      currentPage.textContent = 'Page #1';
-      currentPage.classList.add('curretn-page');
-      this.parentNode.appendChild(currentPage);
-      this.renderCars();
-    });
+    this.garage = document.createElement('div');
+    this.garage.classList.add('garage');
+    this.parentNode.appendChild(this.garage);
+    this.renderGarage();
+  }
 
-    this.attachEvents();
+  private renderGarage() {
+    if (!this.garage) throw new Error();
+
+    this.garage.innerHTML = '';
+    this.carsNumberHtml = undefined;
+
+    this.getCars(this.currentPage).then(() => {
+      this.renderCarsNumber();
+      this.renderCurrentPage();
+      this.renderCars();
+      this.createPagePanel();
+      this.attachEvents();
+    });
+  }
+
+  private renderCurrentPage() {
+    if (!this.garage) throw new Error();
+
+    const currentPage = document.createElement('h1');
+    currentPage.textContent = `Page #${this.currentPage}`;
+    currentPage.classList.add('curretn-page');
+    this.garage.appendChild(currentPage);
   }
 
   private renderCarsNumber() {
+    if (!this.garage) throw new Error();
     if (!this.carsNumberHtml) {
       this.carsNumberHtml = document.createElement('h1');
       this.carsNumberHtml.classList.add('numbers-of-cars');
-      this.parentNode.appendChild(this.carsNumberHtml);
+      this.garage.appendChild(this.carsNumberHtml);
     }
 
     this.carsNumberHtml.textContent = `Garage(${this.totalCars})`;
   }
 
-  private renderCars() {
-    this.garage = document.createElement('div');
-    this.garage.classList.add('garage');
-    this.parentNode.appendChild(this.garage);
+  private createPagePanel() {
+    if (!this.garage) throw new Error();
 
+    const pagePanel = document.createElement('div');
+    pagePanel.classList.add('page-panel');
+    this.garage.appendChild(pagePanel);
+
+    this.prevPage = document.createElement('button');
+    this.prevPage.classList.add('prev-page');
+    this.prevPage.innerHTML = 'prev';
+    pagePanel.appendChild(this.prevPage);
+
+    this.nextPage = document.createElement('button');
+    this.nextPage.classList.add('next-page');
+    this.nextPage.innerHTML = 'next';
+    pagePanel.appendChild(this.nextPage);
+  }
+
+  private renderCars() {
     this.cars?.forEach((elem) => {
       this.renderCar(elem);
     });
@@ -101,7 +140,6 @@ export default class GaragePage extends NestedComponent {
 
     carTrack.addEventListener(CarTrackEvent.REMOVE_CAR, (deletedCar) => {
       this.deleteCar(deletedCar.id);
-      carTrack.delete();
     });
 
     carTrack.addEventListener(CarTrackEvent.SELECT_CAR, (selectedCar) => {
@@ -109,9 +147,9 @@ export default class GaragePage extends NestedComponent {
     });
   }
 
-  private getCars() {
+  private getCars(page: number) {
     return new Promise<void>((resolve, reject) => {
-      fetch(`${API_URL}/garage?_page=1&_limit=${CARS_ON_PAGE}`)
+      fetch(`${API_URL}/garage?_page=${page}&_limit=${CARS_ON_PAGE}`)
         .then((response) => {
           this.totalCars = +(response.headers.get('X-Total-Count') || '0');
           return response.json();
@@ -141,6 +179,8 @@ export default class GaragePage extends NestedComponent {
   private deleteCar(carId: number) {
     fetch(`${API_URL}/garage/${carId}`, {
       method: 'DELETE',
+    }).then(() => {
+      this.renderGarage();
     });
 
     fetch(`${API_URL}/winners/${carId}`, {
@@ -205,8 +245,33 @@ export default class GaragePage extends NestedComponent {
     });
   }
 
+  private get maxPages() {
+    return Math.ceil(this.totalCars / CARS_ON_PAGE);
+  }
+
   private attachEvents() {
     if (!this.controlPanel) throw new Error();
+    if (!this.nextPage) throw new Error();
+    if (!this.prevPage) throw new Error();
+
+    this.nextPage.addEventListener('click', () => {
+      if (this.currentPage === this.maxPages) {
+        return;
+      }
+      this.currentPage += 1;
+      localStorage.setItem('currentGaragePage', `${this.currentPage}`);
+      this.renderGarage();
+    });
+
+    this.prevPage.addEventListener('click', () => {
+      const firstPage = 1;
+      if (this.currentPage === firstPage) {
+        return;
+      }
+      this.currentPage -= 1;
+      localStorage.setItem('currentGaragePage', `${this.currentPage}`);
+      this.renderGarage();
+    });
 
     this.controlPanel.addEventListener(ControlPanelEvent.START_RACE, () => {
       this.startRace().then(({ theCar, drivingTime }) => {
