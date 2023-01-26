@@ -177,6 +177,7 @@ export default class GaragePage extends NestedComponent {
           return response.json();
         })
         .then((data) => {
+          this.cartTracks = [];
           this.cars = data;
           resolve();
         })
