@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/sky.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>TYPESCRIPT</section>
+				<section>What is a typescript? <br>
+					<img style="height: 100px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/2048px-Typescript_logo_2020.svg.png" alt="typescript icon">
+				</section>
+
+				<section>
+					<section>What advantages does it have?</section>
+					<section>
+						<ul>
+							<li>Detects errors at compile time</li>
+							<li>Simplifies support and debugging</li>
+							<li>Offers advanced features such as interfaces, classes, and decorators</li>
+							<li>Helps write more reliable and scalable code</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>Installing and Configuring TypeScript: <br>
+					<img src="https://i.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.webp" alt=""></section>
+					<section>
+						<img style="height: 100px" src="https://cdn.freebiesupply.com/logos/large/2x/nodejs-1-logo-png-transparent.png" alt="">
+						<p>Install Node.js to your computer</p>
+					</section>
+					<section> npm install -g typescript <br>
+						<img style="height: 400px;" src="https://media4.giphy.com/media/W2x2NyL5Of6JW/giphy.gif?cid=ecf05e47kgy9bft09xcudk669gl5870fi7ujein0zi8u28o1&rid=giphy.gif&ct=g" alt="">
+					</section>
+					<section>tsc -v <br>
+						<img style="height: 300px;" src="https://media1.giphy.com/media/PijzuUzUhm7hcWinGn/giphy.gif?cid=ecf05e472mjldw7nxcnrejiv780l4qd7g9d1gffb1zl487o8&rid=giphy.gif&ct=g" alt="">
+					</section>
+				</section>
+
+				<section>
+					<section>Basic Typescript Concepts</section>
+					<section>
+						<ul>
+							<li>data types</li>
+							<li>interfaces</li>
+							<li>decorators</li>
+							<li>classes</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>TypeScript can be used in various development scenarios</section>
+
+				<section>Code example <br>
+					<pre><code data-trim data-noescape>
+						interface Rectangle {
+							width: number;
+							height: number;
+						}
+						
+						function getArea(rectangle: Rectangle) {
+							return rectangle.width * rectangle.height;
+						}
+						
+						const myRectangle = { width: 10, height: 5 };
+						console.log(getArea(myRectangle));  // Output: 50
+							</code></pre>
+				</section>
+
+				<section>How the use of TypeScript can help in the development of your career</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
